@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Grup Tramuntana — grup industrial amb quatre divisions: metall, fusta i interiorisme, energia i manteniment, logística i muntatge. Web de mostra.">
+<meta name="theme-color" content="#0B1015">
+<meta property="og:title" content="Grup Tramuntana">
+<meta property="og:description" content="Quatre divisions industrials, un sol interlocutor.">
+<meta property="og:type" content="website">
+<title>Grup Tramuntana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+/* ============================================================
+   GRUP TRAMUNTANA — design tokens
+   ============================================================ */
+:root{
+  /* light palette (complete) */
+  --bg:#E9E9E3;
+  --surface:#F4F4EF;
+  --surface-2:#DFE0D8;
+  --fg:#0F1721;
+  --fg-muted:#5A6572;
+  --fg-faint:#8A93A0;
+  --rule:#C7C9BF;
+  --rule-soft:#D8D9D0;
+  --accent:#C94E1C;
+  --accent-ink:#8F3712;
+  --accent-wash:#EFDCD1;
+  --accent-fg:#FFF6F1;
+  --marine:#123A5E;
+
+  /* constant dark band — deliberately identical in both themes */
+  --band-bg:#0B1015;
+  --band-surface:#121A21;
+  --band-surface-2:#17222B;
+  --band-fg:#E9EBE8;
+  --band-muted:#8D9AA5;
+  --band-rule:#222E38;
+  --band-accent:#EE7442;
+
+  /* type */
+  --display:"Archivo","Archivo Expanded","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+
+  /* metrics */
+  --wrap:1280px;
+  --gutter:clamp(1.25rem,4vw,3.5rem);
+  --sec-pad:clamp(4.5rem,9vw,8.5rem);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C1116;
+    --surface:#121A22;
+    --surface-2:#18232D;
+    --fg:#E3E7E4;
+    --fg-muted:#94A1AD;
+    --fg-faint:#6E7C89;
+    --rule:#24303B;
+    --rule-soft:#1B2630;
+    --accent:#F0713C;
+    --accent-ink:#F79C71;
+    --accent-wash:#2A1710;
+    --accent-fg:#14100D;
+    --marine:#9CC2E2;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C1116;
+  --surface:#121A22;
+  --surface-2:#18232D;
+  --fg:#E3E7E4;
+  --fg-muted:#94A1AD;
+  --fg-faint:#6E7C89;
+  --rule:#24303B;
+  --rule-soft:#1B2630;
+  --accent:#F0713C;
+  --accent-ink:#F79C71;
+  --accent-wash:#2A1710;
+  --accent-fg:#14100D;
+  --marine:#9CC2E2;
+}
+
+/* ============================================================
+   base
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--display);
+  font-weight:700;
+  line-height:1.03;
+  letter-spacing:-.015em;
+  text-wrap:balance;
+  margin:0;
+  font-variation-settings:"wdth" 116;
+}
+p{margin:0}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:1px}
+::selection{background:var(--accent);color:var(--accent-fg)}
+
+.wrap{
+  width:100%;max-width:var(--wrap);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.6875rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+  display:flex;align-items:center;gap:.75rem;
+  margin:0;
+}
+.eyebrow::before{content:"";width:1.75rem;height:1px;background:currentColor;flex:none}
+
+.h2{font-size:clamp(1.9rem,3.9vw,3.25rem);font-variation-settings:"wdth" 112}
+.h3{font-size:1.1875rem;font-variation-settings:"wdth" 108;letter-spacing:-.005em}
+.lede{
+  font-size:clamp(1.0625rem,1.35vw,1.1875rem);
+  color:var(--fg-muted);max-width:58ch;line-height:1.6;
+}
+.small{font-size:.9375rem;color:var(--fg-muted);line-height:1.6}
+.mono-label{
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--fg-faint);
+}
+
+/* section shell — vertical padding is defined here and nowhere else */
+.section{padding-block:var(--sec-pad);position:relative}
+.section + .section{border-top:1px solid var(--rule-soft)}
+.section-head{display:grid;gap:1.25rem;max-width:70ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
+
+/* ============================================================
+   buttons
+   ============================================================ */
+.btn{
+  --btn-bg:var(--accent);--btn-fg:var(--accent-fg);--btn-bd:var(--accent);
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.9rem 1.5rem;
+  background:var(--btn-bg);color:var(--btn-fg);
+  border:1px solid var(--btn-bd);
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:transform .18s ease,background-color .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn .arw{transition:transform .22s cubic-bezier(.2,.7,.3,1)}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover .arw{transform:translateX(4px)}
+.btn--ghost{--btn-bg:transparent;--btn-fg:var(--fg);--btn-bd:var(--rule)}
+.btn--ghost:hover{--btn-bd:var(--fg)}
+.btn--onband{--btn-bg:transparent;--btn-fg:var(--band-fg);--btn-bd:var(--band-rule)}
+.btn--onband:hover{--btn-bd:var(--band-fg)}
+
+/* ============================================================
+   header
+   ============================================================ */
+.hdr{
+  position:fixed;inset:0 0 auto 0;z-index:60;
+  color:var(--band-fg);
+  border-bottom:1px solid transparent;
+  transition:background-color .3s ease,border-color .3s ease,transform .35s ease;
+}
+.hdr.is-stuck{
+  background:rgba(11,16,21,.9);
+  backdrop-filter:saturate(1.4) blur(14px);
+  border-bottom-color:var(--band-rule);
+}
+.hdr.is-hidden{transform:translateY(-101%)}
+.hdr-inner{display:flex;align-items:center;gap:clamp(.75rem,3vw,2.5rem);height:74px}
+
+.brand{display:flex;align-items:baseline;gap:.55rem;text-decoration:none;flex:none}
+.brand b{
+  font-family:var(--display);font-weight:800;
+  font-variation-settings:"wdth" 124;
+  font-size:1.02rem;letter-spacing:.11em;text-transform:uppercase;
+}
+.brand span{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--band-muted);
+}
+.nav{display:flex;gap:clamp(1rem,2vw,1.75rem);margin-left:auto}
+.nav a{
+  position:relative;text-decoration:none;
+  font-size:.875rem;font-weight:500;color:var(--band-fg);
+  padding-block:.35rem;opacity:.82;transition:opacity .2s ease;
+}
+.nav a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--band-accent);transform:scaleX(0);transform-origin:left;
+  transition:transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.nav a:hover{opacity:1}
+.nav a:hover::after,.nav a.is-active::after{transform:scaleX(1)}
+
+.lang{display:flex;align-items:center;gap:.1rem;flex:none}
+.lang button{
+  background:none;border:0;cursor:pointer;
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--band-muted);
+  padding:.35rem .4rem;transition:color .2s ease;
+}
+.lang button:hover{color:var(--band-fg)}
+.lang button[aria-pressed="true"]{color:var(--band-accent)}
+.lang i{width:1px;height:11px;background:var(--band-rule);display:block}
+
+.hdr .btn{padding:.7rem 1.15rem;flex:none}
+
+.burger{
+  display:none;background:none;border:1px solid var(--band-rule);
+  width:44px;height:38px;cursor:pointer;padding:0;
+  align-items:center;justify-content:center;flex:none;
+}
+.burger span{display:block;width:18px;height:1px;background:var(--band-fg);position:relative}
+.burger span::before,.burger span::after{
+  content:"";position:absolute;left:0;width:18px;height:1px;background:var(--band-fg);
+  transition:transform .25s ease,top .25s ease;
+}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+.burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+.sheet{
+  position:fixed;inset:0;z-index:55;
+  background:var(--band-bg);color:var(--band-fg);
+  display:grid;align-content:center;gap:.15rem;
+  padding:6rem var(--gutter) 3rem;
+  transform:translateY(-100%);visibility:hidden;
+  transition:transform .42s cubic-bezier(.6,.05,.2,1),visibility .42s;
+}
+.sheet.is-open{transform:translateY(0);visibility:visible}
+.sheet a{
+  text-decoration:none;font-family:var(--display);font-weight:700;
+  font-variation-settings:"wdth" 112;
+  font-size:clamp(1.75rem,7.5vw,2.75rem);
+  padding-block:.4rem;border-bottom:1px solid var(--band-rule);
+}
+.sheet .lang{margin-top:2rem}
+
+/* ============================================================
+   hero
+   ============================================================ */
+.hero{
+  position:relative;
+  background:var(--band-bg);color:var(--band-fg);
+  min-height:min(100svh,940px);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;padding-top:9rem;
+}
+#wind{position:absolute;inset:0;width:100%;height:100%}
+.hero-veil{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,16,21,.78) 0%,rgba(11,16,21,.2) 38%,rgba(11,16,21,.55) 72%,rgba(11,16,21,.95) 100%);
+}
+.hero-body{position:relative;z-index:2;padding-bottom:clamp(2rem,4vw,3.5rem)}
+.hero .eyebrow{color:var(--band-accent)}
+.hero h1{
+  font-size:clamp(2.5rem,7.4vw,6.2rem);
+  font-variation-settings:"wdth" 106;
+  letter-spacing:-.03em;
+  margin:1.5rem 0 0;max-width:15ch;
+}
+.hero h1 em{font-style:normal;color:var(--band-accent)}
+.hero-sub{
+  margin-top:1.75rem;max-width:54ch;
+  color:var(--band-muted);
+  font-size:clamp(1rem,1.4vw,1.1875rem);line-height:1.62;
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2.25rem}
+
+.strip{position:relative;z-index:2;border-top:1px solid var(--band-rule);background:rgba(11,16,21,.62)}
+.strip-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip-cell{padding:1.5rem 0 1.6rem 1.35rem;border-left:1px solid var(--band-rule)}
+.strip-cell:first-child{border-left:0;padding-left:0}
+.strip-cell b{
+  display:block;font-family:var(--display);font-weight:700;
+  font-variation-settings:"wdth" 118;
+  font-size:clamp(1.45rem,2.6vw,2.25rem);line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.strip-cell small{
+  display:block;margin-top:.5rem;
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--band-muted);
+}
+.scroll-hint{
+  position:absolute;left:var(--gutter);bottom:calc(100% + 1.25rem);
+  font-family:var(--mono);font-size:.5625rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--band-muted);
+  display:flex;align-items:center;gap:.6rem;
+}
+.scroll-hint::after{
+  content:"";width:1px;height:26px;background:var(--band-rule);
+  animation:drop 2.4s ease-in-out infinite;transform-origin:top;
+}
+@keyframes drop{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+
+/* ============================================================
+   divisions
+   ============================================================ */
+.div-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule);
+}
+.div-card{
+  border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding:clamp(1.75rem,3vw,2.75rem);
+  display:flex;flex-direction:column;gap:1rem;
+  background:var(--surface);
+  position:relative;isolation:isolate;
+  transition:background-color .3s ease;
+}
+.div-card::before{
+  content:"";position:absolute;inset:auto 0 0 0;height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1);
+}
+.div-card:hover{background:var(--surface-2)}
+.div-card:hover::before{transform:scaleX(1)}
+.div-idx{
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.16em;
+  color:var(--accent);display:flex;justify-content:space-between;align-items:center;
+}
+.div-icon{width:34px;height:34px;stroke:var(--fg);stroke-width:1.2;fill:none;opacity:.85}
+.div-card h3{margin-top:.25rem}
+.div-card .small{max-width:44ch}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;padding-top:.75rem}
+.tag{
+  font-family:var(--mono);font-size:.625rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--rule);padding:.3rem .55rem;color:var(--fg-muted);
+}
+
+/* ============================================================
+   numbers band
+   ============================================================ */
+.band{background:var(--band-bg);color:var(--band-fg)}
+.band .eyebrow{color:var(--band-accent)}
+.band .lede{color:var(--band-muted)}
+.band .mono-label{color:var(--band-muted)}
+.section.band + .section{border-top:0}
+.section + .section.band{border-top-color:var(--band-rule)}
+
+.fig-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--band-rule);
+}
+.fig{
+  padding:2rem clamp(1rem,2vw,2rem);
+  border-bottom:1px solid var(--band-rule);
+  border-right:1px solid var(--band-rule);
+}
+.fig:nth-child(3n+1){padding-left:0}
+.fig:nth-child(3n){border-right:0;padding-right:0}
+.fig b{
+  display:block;font-family:var(--display);font-weight:700;
+  font-variation-settings:"wdth" 120;
+  font-size:clamp(2.4rem,5.5vw,4.25rem);line-height:.95;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.fig b .suf{font-size:.42em;vertical-align:.85em;margin-left:.12em;color:var(--band-accent)}
+.fig small{
+  display:block;margin-top:.75rem;max-width:26ch;
+  font-size:.875rem;color:var(--band-muted);line-height:1.5;
+}
+
+/* ============================================================
+   process
+   ============================================================ */
+.steps{display:grid;gap:0;border-top:1px solid var(--rule)}
+.step{
+  display:grid;grid-template-columns:5.5rem minmax(0,22ch) minmax(0,1fr);
+  gap:clamp(1rem,3vw,2.5rem);align-items:start;
+  padding:clamp(1.5rem,2.6vw,2.25rem) 0;
+  border-bottom:1px solid var(--rule);
+  transition:padding-left .35s cubic-bezier(.2,.7,.3,1),background-color .3s ease;
+}
+.step:hover{padding-left:1rem;background:var(--surface)}
+.step-n{
+  font-family:var(--mono);font-size:.8125rem;letter-spacing:.14em;
+  color:var(--accent);padding-top:.2rem;
+}
+.step .small{max-width:56ch}
+
+/* ============================================================
+   presence / schematic
+   ============================================================ */
+.presence{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.plot{
+  position:relative;width:100%;aspect-ratio:4/3;
+  border:1px solid var(--band-rule);
+  background:
+    linear-gradient(var(--band-rule) 1px,transparent 1px) 0 0/100% 12.5%,
+    linear-gradient(90deg,var(--band-rule) 1px,transparent 1px) 0 0/12.5% 100%,
+    var(--band-surface);
+  background-blend-mode:normal;
+  opacity:1;
+}
+.plot::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 30% 20%,transparent 30%,rgba(11,16,21,.55) 100%);
+  pointer-events:none;
+}
+.plot svg{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.pt-dot{fill:var(--band-accent)}
+.pt-ring{fill:none;stroke:var(--band-accent);stroke-width:1;opacity:.5}
+.pt-line{stroke:var(--band-muted);stroke-width:.6;opacity:.35;stroke-dasharray:3 3}
+.pt-label{
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;
+  fill:var(--band-fg);text-transform:uppercase;
+}
+.plants{display:grid;gap:0;border-top:1px solid var(--band-rule)}
+.plant{
+  display:flex;align-items:baseline;gap:1rem;
+  padding:.85rem 0;border-bottom:1px solid var(--band-rule);
+  cursor:default;transition:color .2s ease;
+}
+.plant b{
+  font-family:var(--display);font-weight:600;font-variation-settings:"wdth" 110;
+  font-size:1rem;min-width:8.5rem;
+}
+.plant span{font-size:.875rem;color:var(--band-muted);flex:1}
+.plant time{
+  font-family:var(--mono);font-size:.75rem;color:var(--band-muted);
+  font-variant-numeric:tabular-nums;
+}
+.plant.is-hot b{color:var(--band-accent)}
+
+/* ============================================================
+   projects
+   ============================================================ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.proj{
+  background:var(--surface);padding:clamp(1.5rem,2.6vw,2.25rem);
+  display:flex;flex-direction:column;gap:1rem;min-height:20rem;
+  transition:background-color .3s ease;
+}
+.proj:hover{background:var(--surface-2)}
+.proj .mono-label{color:var(--accent)}
+.proj h3{margin-top:.25rem}
+.proj-metric{
+  margin-top:auto;padding-top:1.25rem;border-top:1px solid var(--rule);
+  display:grid;gap:.3rem;
+}
+.proj-metric b{
+  font-family:var(--display);font-weight:700;font-variation-settings:"wdth" 116;
+  font-size:1.75rem;line-height:1;font-variant-numeric:tabular-nums;
+}
+
+/* ============================================================
+   quality
+   ============================================================ */
+.quality{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.certs{display:grid;gap:0;border-top:1px solid var(--rule)}
+.cert{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 0;border-bottom:1px solid var(--rule);
+}
+.cert svg{width:18px;height:18px;flex:none;stroke:var(--accent);stroke-width:1.6;fill:none}
+.cert b{font-family:var(--mono);font-size:.8125rem;letter-spacing:.06em;min-width:9rem}
+.cert span{font-size:.875rem;color:var(--fg-muted)}
+.pledge{
+  border:1px solid var(--rule);padding:clamp(1.5rem,3vw,2.25rem);
+  background:var(--surface);display:grid;gap:1.5rem;align-content:start;
+}
+.meter{display:grid;gap:.55rem}
+.meter-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.meter-top b{font-family:var(--mono);font-size:.8125rem;letter-spacing:.08em;font-variant-numeric:tabular-nums;color:var(--accent)}
+.meter-track{height:3px;background:var(--rule);position:relative;overflow:hidden}
+.meter-fill{
+  position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);
+  transition:width 1.4s cubic-bezier(.2,.7,.3,1);
+}
+
+/* ============================================================
+   careers
+   ============================================================ */
+.jobs{display:grid;gap:0;border-top:1px solid var(--band-rule);margin-top:2.5rem}
+.job{
+  display:flex;flex-wrap:wrap;align-items:center;gap:1rem;
+  padding:1.15rem 0;border-bottom:1px solid var(--band-rule);
+  text-decoration:none;transition:padding-left .35s cubic-bezier(.2,.7,.3,1);
+}
+.job:hover{padding-left:.9rem}
+.job b{font-family:var(--display);font-weight:600;font-variation-settings:"wdth" 110;font-size:1.0625rem;flex:1;min-width:14rem}
+.job .mono-label{color:var(--band-muted)}
+.job .arw{color:var(--band-accent);transition:transform .25s ease}
+.job:hover .arw{transform:translateX(5px)}
+
+/* ============================================================
+   contact
+   ============================================================ */
+.contact{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,5vw,4.5rem)}
+.form{display:grid;gap:1.25rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.field{display:grid;gap:.45rem}
+.field label{font-family:var(--mono);font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint)}
+.field input,.field select,.field textarea{
+  font:inherit;font-size:.9375rem;color:var(--fg);
+  background:var(--surface);border:1px solid var(--rule);
+  padding:.8rem .9rem;width:100%;border-radius:0;
+  transition:border-color .2s ease,background-color .2s ease;
+}
+.field textarea{resize:vertical;min-height:8rem}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);outline:none;background:var(--bg)}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;justify-content:space-between}
+.form-note{font-size:.8125rem;color:var(--fg-faint);max-width:38ch}
+.sent{
+  border:1px solid var(--accent);background:var(--accent-wash);
+  padding:1rem 1.15rem;font-size:.9375rem;display:none;
+}
+.sent.is-on{display:block}
+.contact-side{display:grid;gap:1.75rem;align-content:start}
+.cline{display:grid;gap:.3rem;padding-bottom:1.25rem;border-bottom:1px solid var(--rule)}
+.cline b{font-family:var(--display);font-weight:600;font-variation-settings:"wdth" 110;font-size:1.0625rem}
+.cline a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:1px}
+.cline a:hover{color:var(--accent)}
+
+/* ============================================================
+   footer
+   ============================================================ */
+.ftr{background:var(--band-bg);color:var(--band-fg);padding-block:clamp(3rem,6vw,5rem) 2rem}
+.ftr-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--band-rule)}
+.ftr-mark{font-family:var(--display);font-weight:800;font-variation-settings:"wdth" 124;font-size:1.5rem;letter-spacing:.1em;text-transform:uppercase}
+.ftr-col{display:grid;gap:.6rem;align-content:start}
+.ftr-col b{font-family:var(--mono);font-size:.625rem;letter-spacing:.18em;text-transform:uppercase;color:var(--band-muted);margin-bottom:.35rem}
+.ftr-col a{font-size:.9375rem;text-decoration:none;color:var(--band-fg);opacity:.8;width:fit-content;border-bottom:1px solid transparent;transition:opacity .2s ease,border-color .2s ease}
+.ftr-col a:hover{opacity:1;border-bottom-color:var(--band-accent)}
+.ftr-bot{
+  display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;
+  padding-top:1.75rem;font-family:var(--mono);font-size:.6875rem;letter-spacing:.06em;color:var(--band-muted);
+}
+.ftr-bot a{color:var(--band-accent);text-decoration:none}
+.demo-flag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--band-rule);padding:.35rem .6rem;
+}
+.demo-flag::before{content:"";width:5px;height:5px;background:var(--band-accent);display:block}
+
+/* ============================================================
+   motion
+   ============================================================ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .scroll-hint::after{animation:none}
+  .btn:hover,.step:hover,.job:hover{transform:none;padding-left:0}
+  .meter-fill{transition:none}
+}
+
+/* ============================================================
+   responsive
+   ============================================================ */
+@media (max-width:1020px){
+  .nav,.hdr .btn{display:none}
+  .burger{display:flex}
+  .hdr .lang{margin-left:auto}
+  .presence,.quality,.contact{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
+  .fig-grid{grid-template-columns:repeat(2,1fr)}
+  .fig:nth-child(3n){border-right:1px solid var(--band-rule);padding-right:clamp(1rem,2vw,2rem)}
+  .fig:nth-child(3n+1){padding-left:clamp(1rem,2vw,2rem)}
+  .fig:nth-child(2n+1){padding-left:0}
+  .fig:nth-child(2n){border-right:0;padding-right:0}
+}
+@media (max-width:760px){
+  .div-grid{grid-template-columns:1fr}
+  .strip-grid{grid-template-columns:repeat(2,1fr)}
+  .strip-cell{border-left:0;padding-left:0;border-top:1px solid var(--band-rule)}
+  .strip-cell:nth-child(-n+2){border-top:0}
+  .strip-cell:nth-child(2n){padding-left:1.25rem;border-left:1px solid var(--band-rule)}
+  .step{grid-template-columns:1fr;gap:.5rem}
+  .step-n{padding-top:0}
+  .row{grid-template-columns:1fr}
+  .ftr-top{grid-template-columns:1fr}
+  .fig-grid{grid-template-columns:1fr}
+  .fig{border-right:0!important;padding-right:0!important;padding-left:0!important}
+  .plant b{min-width:100%}
+}
+</style>
+</head>
+<body>
+
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-inner">
+    <a class="brand" href="#top"><b>Tramuntana</b><span data-i18n="brand.sub">Grup Industrial</span></a>
+    <nav class="nav">
+      <a href="#divisions" data-i18n="nav.div">Divisions</a>
+      <a href="#proces" data-i18n="nav.proc">Com treballem</a>
+      <a href="#presencia" data-i18n="nav.pres">Presència</a>
+      <a href="#projectes" data-i18n="nav.proj">Projectes</a>
+      <a href="#empresa" data-i18n="nav.emp">Empresa</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="ca" aria-pressed="true">CA</button><i></i>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button><i></i>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn" href="#contacte"><span data-i18n="nav.cta">Contacte</span><span class="arw">&rarr;</span></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="sheet" aria-label="Menú"><span></span></button>
+  </div>
+</header>
+
+<div class="sheet" id="sheet">
+  <a href="#divisions" data-i18n="nav.div">Divisions</a>
+  <a href="#proces" data-i18n="nav.proc">Com treballem</a>
+  <a href="#presencia" data-i18n="nav.pres">Presència</a>
+  <a href="#projectes" data-i18n="nav.proj">Projectes</a>
+  <a href="#empresa" data-i18n="nav.emp">Empresa</a>
+  <a href="#contacte" data-i18n="nav.cta">Contacte</a>
+  <div class="lang" role="group" aria-label="Idioma">
+    <button type="button" data-lang="ca" aria-pressed="true">CA</button><i></i>
+    <button type="button" data-lang="es" aria-pressed="false">ES</button><i></i>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <canvas id="wind" aria-hidden="true"></canvas>
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="wrap hero-body">
+    <p class="eyebrow" data-i18n="hero.eyebrow">Grup industrial · Des de 1968</p>
+    <h1 data-i18n-html="hero.h1">Quatre divisions industrials, <em>un sol interlocutor.</em></h1>
+    <p class="hero-sub" data-i18n="hero.sub">Dissenyem, fabriquem, instal·lem i mantenim. Del primer plànol fins a la revisió del desè any, cobrim tot el cicle de vida d'un projecte industrial sense passar-te de proveïdor en proveïdor.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#contacte"><span data-i18n="hero.cta1">Parlem del teu projecte</span><span class="arw">&rarr;</span></a>
+      <a class="btn btn--onband" href="#divisions"><span data-i18n="hero.cta2">Veure les divisions</span></a>
+    </div>
+  </div>
+
+  <div class="strip">
+    <span class="scroll-hint" data-i18n="hero.scroll" aria-hidden="true">Baixa</span>
+    <div class="wrap strip-grid">
+      <div class="strip-cell"><b>1968</b><small data-i18n="strip.1">Any de fundació</small></div>
+      <div class="strip-cell"><b>4</b><small data-i18n="strip.2">Divisions</small></div>
+      <div class="strip-cell"><b>340</b><small data-i18n="strip.3">Persones</small></div>
+      <div class="strip-cell"><b data-i18n="strip.4v">26.000 m&sup2;</b><small data-i18n="strip.4">Superfície productiva</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DIVISIONS ===================== -->
+<section class="section" id="divisions">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="div.eyebrow">Divisions</p>
+      <h2 class="h2" data-i18n="div.h2">Quatre especialitats que treballen com una de sola.</h2>
+      <p class="lede" data-i18n="div.lede">Cada divisió té el seu equip, la seva planta i els seus certificats. El que comparteixen és l'enginyeria, les compres i un únic cap de projecte que et dona la cara de principi a fi.</p>
+    </div>
+
+    <div class="div-grid">
+      <article class="div-card rv">
+        <div class="div-idx"><span>01</span>
+          <svg class="div-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="3.2"/><path d="M16 6V2M16 30v-4M26 16h4M2 16h4M23.1 8.9l2.8-2.8M6.1 25.9l2.8-2.8M23.1 23.1l2.8 2.8M6.1 6.1l2.8 2.8"/></svg>
+        </div>
+        <h3 class="h3" data-i18n="div.1.t">Metall</h3>
+        <p class="small" data-i18n="div.1.d">Mecanització, caldereria i estructures en acer, inoxidable i alumini. De la peça unitària a la sèrie curta, amb tolerància de ±0,02 mm i traçabilitat de colada en cada lliurament.</p>
+        <div class="tags"><span class="tag" data-i18n="tag.1a">CNC 5 eixos</span><span class="tag">TIG / MIG</span><span class="tag">EN 1090</span></div>
+      </article>
+
+      <article class="div-card rv">
+        <div class="div-idx"><span>02</span>
+          <svg class="div-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="20" width="26" height="7"/><rect x="3" y="12" width="26" height="7"/><rect x="3" y="4" width="26" height="7"/><path d="M8 7.5h4M8 15.5h9M8 23.5h6"/></svg>
+        </div>
+        <h3 class="h3" data-i18n="div.2.t">Fusta i interiorisme</h3>
+        <p class="small" data-i18n="div.2.d">Mobiliari tècnic i fusteria a mida per a retail, hoteleria i oficina. Fem el prototip, la producció i el muntatge a obra amb el mateix equip que ha dibuixat el projecte.</p>
+        <div class="tags"><span class="tag" data-i18n="tag.2a">CNC fusta</span><span class="tag" data-i18n="tag.2b">Xapat</span><span class="tag" data-i18n="tag.2c">Lacat</span></div>
+      </article>
+
+      <article class="div-card rv">
+        <div class="div-idx"><span>03</span>
+          <svg class="div-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M17.5 3 7 18h7l-1.5 11L23 14h-7z"/><path d="M2 26h4M26 26h4" opacity=".6"/></svg>
+        </div>
+        <h3 class="h3" data-i18n="div.3.t">Energia i manteniment</h3>
+        <p class="small" data-i18n="div.3.d">Instal·lacions elèctriques de baixa i mitjana tensió, automatització i manteniment preventiu. Contracte anual amb compromís de resposta en 24 hores a tota la zona.</p>
+        <div class="tags"><span class="tag" data-i18n="tag.3a">BT / MT</span><span class="tag">PLC</span><span class="tag" data-i18n="tag.3c">Resposta 24 h</span></div>
+      </article>
+
+      <article class="div-card rv">
+        <div class="div-idx"><span>04</span>
+          <svg class="div-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M2 8h16v13H2z"/><path d="M18 12h6l5 5v4h-11z"/><circle cx="8" cy="24" r="2.6"/><circle cx="23" cy="24" r="2.6"/></svg>
+        </div>
+        <h3 class="h3" data-i18n="div.4.t">Logística i muntatge</h3>
+        <p class="small" data-i18n="div.4.d">Flota pròpia per a càrregues fora de mida i equips de muntatge amb pla de seguretat propi. Movem, aixequem i posem en marxa el que hem fabricat.</p>
+        <div class="tags"><span class="tag" data-i18n="tag.4a">Càrrega especial</span><span class="tag" data-i18n="tag.4b">Muntatge a obra</span><span class="tag" data-i18n="tag.4c">PRL propi</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== XIFRES ===================== -->
+<section class="section band">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="fig.eyebrow">Xifres</p>
+      <h2 class="h2" data-i18n="fig.h2">El que hi ha darrere de cada lliurament.</h2>
+    </div>
+    <div class="fig-grid">
+      <div class="fig rv"><b><span class="ctr" data-count="57">0</span></b><small data-i18n="fig.1">Anys d'activitat ininterrompuda des del primer taller de Figueres.</small></div>
+      <div class="fig rv"><b><span class="ctr" data-count="340">0</span></b><small data-i18n="fig.2">Persones en plantilla, el 78 % amb contracte indefinit.</small></div>
+      <div class="fig rv"><b><span class="ctr" data-count="6">0</span></b><small data-i18n="fig.3">Plantes productives a Catalunya, França i Aragó.</small></div>
+      <div class="fig rv"><b><span class="ctr" data-count="19">0</span></b><small data-i18n="fig.4">Països on hem lliurat i muntat projectes.</small></div>
+      <div class="fig rv"><b><span class="ctr" data-count="98.4" data-dec="1">0</span><span class="suf">%</span></b><small data-i18n="fig.5">Comandes lliurades dins la data compromesa durant el 2025.</small></div>
+      <div class="fig rv"><b><span class="ctr" data-count="1240">0</span></b><small data-i18n="fig.6">Projectes tancats l'any passat, de la reparació d'un dia a l'obra de sis mesos.</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCÉS ===================== -->
+<section class="section" id="proces">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="proc.eyebrow">Com treballem</p>
+      <h2 class="h2" data-i18n="proc.h2">Cinc passos, sempre els mateixos.</h2>
+      <p class="lede" data-i18n="proc.lede">No improvisem el mètode segons el client. Aquest és l'ordre que seguim tant en una reparació de dos dies com en una línia de producció sencera.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="step-n">01</span><h3 class="h3" data-i18n="proc.1.t">Consulta i visita</h3><p class="small" data-i18n="proc.1.d">Anem a la teva planta o a l'obra a mirar-ho amb els nostres ulls. Sense compromís i sense cost, també si al final no ens encarregues res.</p></div>
+      <div class="step rv"><span class="step-n">02</span><h3 class="h3" data-i18n="proc.2.t">Enginyeria i oferta</h3><p class="small" data-i18n="proc.2.d">Càlcul, plànols i pressupost tancat en cinc dies laborables. El preu que signes és el preu que pagues, tret que ens canviïs l'abast.</p></div>
+      <div class="step rv"><span class="step-n">03</span><h3 class="h3" data-i18n="proc.3.t">Fabricació</h3><p class="small" data-i18n="proc.3.d">Producció a planta pròpia amb seguiment obert: cada dilluns saps en quin punt exacte és la teva comanda i qui hi està treballant.</p></div>
+      <div class="step rv"><span class="step-n">04</span><h3 class="h3" data-i18n="proc.4.t">Muntatge i posada en marxa</h3><p class="small" data-i18n="proc.4.d">Equip propi a obra, amb pla de seguretat, coordinació d'activitats i acta de recepció signada el mateix dia que acabem.</p></div>
+      <div class="step rv"><span class="step-n">05</span><h3 class="h3" data-i18n="proc.5.t">Manteniment</h3><p class="small" data-i18n="proc.5.d">Contracte anual opcional amb revisions programades, recanvis en estoc i resposta en 24 hores quan alguna cosa s'atura.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRESÈNCIA ===================== -->
+<section class="section band" id="presencia">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="pres.eyebrow">Presència</p>
+      <h2 class="h2" data-i18n="pres.h2">Sis plantes, una hora de distància entre elles.</h2>
+      <p class="lede" data-i18n="pres.lede">La producció es concentra al nord-est peninsular i el sud de França. Estan prou a prop com per moure una peça d'una planta a l'altra el mateix dia i prou repartides com per arribar a obra sense fer nit.</p>
+    </div>
+    <div class="presence">
+      <div class="plot rv" role="img" aria-label="Esquema de les sis plantes del grup">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+          <g class="pt-line" fill="none">
+            <path d="M258 108 L246 60"/><path d="M258 108 L244 152"/><path d="M258 108 L192 180"/>
+            <path d="M258 108 L140 236"/><path d="M258 108 L58 208"/>
+          </g>
+          <g>
+            <circle class="pt-ring" cx="258" cy="108" r="13"/><circle class="pt-ring" cx="258" cy="108" r="20" opacity=".22"/>
+            <circle class="pt-dot" cx="258" cy="108" r="4.5"/>
+            <circle class="pt-dot" cx="246" cy="60" r="3"/>
+            <circle class="pt-dot" cx="244" cy="152" r="3"/>
+            <circle class="pt-dot" cx="192" cy="180" r="3"/>
+            <circle class="pt-dot" cx="140" cy="236" r="3"/>
+            <circle class="pt-dot" cx="58" cy="208" r="3"/>
+          </g>
+          <g class="pt-label">
+            <text x="278" y="106">Figueres</text>
+            <text x="258" y="58">Perpinyà</text>
+            <text x="256" y="156">Girona</text>
+            <text x="204" y="184">Vic</text>
+            <text x="152" y="240">Tarragona</text>
+            <text x="70" y="212">Saragossa</text>
+          </g>
+          <g class="pt-label" opacity=".45">
+            <text x="20" y="30">N</text>
+            <path d="M22 36 L22 56 M18 52 L22 56 L26 52" stroke="currentColor" fill="none" stroke-width=".8"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="plants rv">
+        <div class="plant is-hot"><b>Figueres</b><span data-i18n="pres.p1">Seu central i divisió de metall</span><time>1968</time></div>
+        <div class="plant"><b>Girona</b><span data-i18n="pres.p2">Fusta i interiorisme</span><time>1984</time></div>
+        <div class="plant"><b>Vic</b><span data-i18n="pres.p3">Energia i manteniment</span><time>1997</time></div>
+        <div class="plant"><b>Tarragona</b><span data-i18n="pres.p4">Logística i magatzem regulador</span><time>2006</time></div>
+        <div class="plant"><b>Perpinyà</b><span data-i18n="pres.p5">Metall — mercat francès</span><time>2013</time></div>
+        <div class="plant"><b>Saragossa</b><span data-i18n="pres.p6">Base de muntatge per a la meitat oest</span><time>2021</time></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTES ===================== -->
+<section class="section" id="projectes">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="proj.eyebrow">Projectes</p>
+      <h2 class="h2" data-i18n="proj.h2">Tres encàrrecs recents, amb la xifra que importava al client.</h2>
+    </div>
+    <div class="proj-grid">
+      <article class="proj rv">
+        <p class="mono-label" data-i18n="proj.1.k">Metall + Energia</p>
+        <h3 class="h3" data-i18n="proj.1.t">Línia d'envasat per a una cooperativa agroalimentària</h3>
+        <p class="small" data-i18n="proj.1.d">Estructura, cintes, quadre elèctric i automatització, amb la campanya de collita ja tancada com a data límit innegociable.</p>
+        <div class="proj-metric"><b>11</b><span class="small" data-i18n="proj.1.m">setmanes de la comanda a la posada en marxa</span></div>
+      </article>
+      <article class="proj rv">
+        <p class="mono-label" data-i18n="proj.2.k">Fusta i interiorisme</p>
+        <h3 class="h3" data-i18n="proj.2.t">Quaranta-dues habitacions d'hotel, mobiliari complet</h3>
+        <p class="small" data-i18n="proj.2.d">Capçals, armaris i banys a mida fabricats per plantes senceres i muntats de nit per no tancar l'hotel cap dia.</p>
+        <div class="proj-metric"><b>0</b><span class="small" data-i18n="proj.2.m">incidències obertes a l'acta de recepció</span></div>
+      </article>
+      <article class="proj rv">
+        <p class="mono-label" data-i18n="proj.3.k">Logística + Muntatge</p>
+        <h3 class="h3" data-i18n="proj.3.t">Trasllat d'una planta sencera a 90 km</h3>
+        <p class="small" data-i18n="proj.3.d">Desmuntatge, transport especial de sis màquines de fins a 24 tones i remuntatge amb calibratge, per fases i sense aturar la producció.</p>
+        <div class="proj-metric"><b>9</b><span class="small" data-i18n="proj.3.m">dies de trasllat, zero dies de fàbrica parada</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUALITAT ===================== -->
+<section class="section" id="empresa">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="qual.eyebrow">Qualitat i compromisos</p>
+      <h2 class="h2" data-i18n="qual.h2">Els certificats que ens demanen, i els que no ens demana ningú.</h2>
+    </div>
+    <div class="quality">
+      <div class="certs rv">
+        <div class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg><b>ISO 9001</b><span data-i18n="qual.c1">Gestió de la qualitat</span></div>
+        <div class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg><b>ISO 14001</b><span data-i18n="qual.c2">Gestió ambiental</span></div>
+        <div class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg><b>ISO 45001</b><span data-i18n="qual.c3">Seguretat i salut a la feina</span></div>
+        <div class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg><b>EN 1090-2</b><span data-i18n="qual.c4">Estructures d'acer, classe d'execució EXC3</span></div>
+        <div class="cert"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg><b>Marcatge CE</b><span data-i18n="qual.c5">Producte estructural i conjunts muntats</span></div>
+      </div>
+
+      <div class="pledge rv">
+        <p class="mono-label" data-i18n="qual.pledge">Compromisos que ens hem posat nosaltres</p>
+        <div class="meter"><div class="meter-top"><span class="small" data-i18n="qual.m1">Electricitat consumida que ve de les cobertes fotovoltaiques</span><b>71%</b></div><div class="meter-track"><span class="meter-fill" data-fill="71"></span></div></div>
+        <div class="meter"><div class="meter-top"><span class="small" data-i18n="qual.m2">Ferralla i retalls de fusta que tornen a la cadena de reciclatge</span><b>93%</b></div><div class="meter-track"><span class="meter-fill" data-fill="93"></span></div></div>
+        <div class="meter"><div class="meter-top"><span class="small" data-i18n="qual.m3">Compres a proveïdors a menys de 200 km</span><b>64%</b></div><div class="meter-track"><span class="meter-fill" data-fill="64"></span></div></div>
+        <p class="small" data-i18n="qual.note">Publiquem aquestes tres xifres cada gener a la memòria anual, hagin pujat o hagin baixat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEINA ===================== -->
+<section class="section band">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="job.eyebrow">Treballar-hi</p>
+      <h2 class="h2" data-i18n="job.h2">Busquem gent que vulgui quedar-s'hi.</h2>
+      <p class="lede" data-i18n="job.lede">L'antiguitat mitjana a la casa és d'onze anys. Formem a dins, paguem per conveni de metall més complement propi i el 78 % de la plantilla té contracte indefinit.</p>
+    </div>
+    <div class="jobs">
+      <a class="job rv" href="#contacte"><b data-i18n="job.1.t">Programador/a CNC — 5 eixos</b><span class="mono-label">Figueres</span><span class="mono-label" data-i18n="job.full">Jornada completa</span><span class="arw">&rarr;</span></a>
+      <a class="job rv" href="#contacte"><b data-i18n="job.2.t">Tècnic/a de manteniment elèctric</b><span class="mono-label">Vic</span><span class="mono-label" data-i18n="job.shift">Torns</span><span class="arw">&rarr;</span></a>
+      <a class="job rv" href="#contacte"><b data-i18n="job.3.t">Cap de projecte d'interiorisme</b><span class="mono-label">Girona</span><span class="mono-label" data-i18n="job.full">Jornada completa</span><span class="arw">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTE ===================== -->
+<section class="section" id="contacte">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow" data-i18n="ct.eyebrow">Contacte</p>
+      <h2 class="h2" data-i18n="ct.h2">Explica'ns què necessites i et diem si ho sabem fer.</h2>
+      <p class="lede" data-i18n="ct.lede">Si no és el nostre camp t'ho direm el mateix dia i, sempre que puguem, et passarem el nom d'algú que sí que ho faci.</p>
+    </div>
+
+    <div class="contact">
+      <div class="contact-side rv">
+        <div class="cline"><span class="mono-label" data-i18n="ct.l1">Telèfon</span><b><a href="tel:+34972000000">+34 972 00 00 00</a></b></div>
+        <div class="cline"><span class="mono-label" data-i18n="ct.l2">Correu</span><b><a href="mailto:info@gruptramuntana.example">info@gruptramuntana.example</a></b></div>
+        <div class="cline"><span class="mono-label" data-i18n="ct.l3">Seu central</span><b>Polígon Empordà Internacional</b><span class="small">Carrer de la Farga 14 · 17600 Figueres</span></div>
+        <div class="cline" style="border-bottom:0"><span class="mono-label" data-i18n="ct.l4">Horari d'oficina</span><b data-i18n="ct.hours">Dilluns a divendres, 8:00 – 17:30</b><span class="small" data-i18n="ct.hours2">Avaries amb contracte de manteniment: 24 h, tots els dies de l'any.</span></div>
+      </div>
+
+      <form class="form rv" id="form" novalidate>
+        <div class="row">
+          <div class="field"><label for="f-name" data-i18n="ct.f1">Nom i cognoms</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-comp" data-i18n="ct.f2">Empresa</label><input id="f-comp" name="company" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="f-mail" data-i18n="ct.f3">Correu electrònic</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-div" data-i18n="ct.f4">Divisió que t'interessa</label>
+            <select id="f-div" name="division">
+              <option data-i18n="div.1.t">Metall</option>
+              <option data-i18n="div.2.t">Fusta i interiorisme</option>
+              <option data-i18n="div.3.t">Energia i manteniment</option>
+              <option data-i18n="div.4.t">Logística i muntatge</option>
+              <option data-i18n="ct.opt5">Encara no ho sé</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="f-msg" data-i18n="ct.f5">Què necessites</label><textarea id="f-msg" name="message" rows="5" required></textarea></div>
+        <div class="form-foot">
+          <p class="form-note" data-i18n="ct.note">Responem tots els missatges en menys de 24 hores laborables. No fem servir les dades per a res més que per contestar-te.</p>
+          <button class="btn" type="submit"><span data-i18n="ct.send">Enviar consulta</span><span class="arw">&rarr;</span></button>
+        </div>
+        <p class="sent" id="sent" role="status" data-i18n="ct.sent">Aquesta pàgina és una demostració: el formulari no envia res enlloc. En una web real, aquest missatge arribaria a la teva bústia al moment.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div>
+        <div class="ftr-mark">Tramuntana</div>
+        <p class="small" style="color:var(--band-muted);max-width:34ch;margin-top:.85rem" data-i18n="ft.blurb">Grup industrial fundat a Figueres el 1968. Metall, fusta, energia i logística sota un mateix cap de projecte.</p>
+      </div>
+      <div class="ftr-col">
+        <b data-i18n="ft.c1">Divisions</b>
+        <a href="#divisions" data-i18n="div.1.t">Metall</a>
+        <a href="#divisions" data-i18n="div.2.t">Fusta i interiorisme</a>
+        <a href="#divisions" data-i18n="div.3.t">Energia i manteniment</a>
+        <a href="#divisions" data-i18n="div.4.t">Logística i muntatge</a>
+      </div>
+      <div class="ftr-col">
+        <b data-i18n="ft.c2">Grup</b>
+        <a href="#presencia" data-i18n="nav.pres">Presència</a>
+        <a href="#projectes" data-i18n="nav.proj">Projectes</a>
+        <a href="#empresa" data-i18n="ft.qual">Qualitat</a>
+        <a href="#contacte" data-i18n="nav.cta">Contacte</a>
+      </div>
+    </div>
+    <div class="ftr-bot">
+      <span data-i18n="ft.legal">© 2026 Grup Tramuntana · Avís legal · Privacitat · Cookies</span>
+      <span class="demo-flag" data-i18n="ft.demo">Web de mostra · disseny de Biel Porté</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   1. i18n
+   ============================================================ */
+var I18N = {
+ca:{
+"brand.sub":"Grup Industrial",
+"nav.div":"Divisions","nav.proc":"Com treballem","nav.pres":"Presència","nav.proj":"Projectes","nav.emp":"Empresa","nav.cta":"Contacte",
+"hero.eyebrow":"Grup industrial · Des de 1968",
+"hero.h1":"Quatre divisions industrials, <em>un sol interlocutor.</em>",
+"hero.sub":"Dissenyem, fabriquem, instal·lem i mantenim. Del primer plànol fins a la revisió del desè any, cobrim tot el cicle de vida d'un projecte industrial sense passar-te de proveïdor en proveïdor.",
+"hero.cta1":"Parlem del teu projecte","hero.cta2":"Veure les divisions","hero.scroll":"Baixa",
+"strip.1":"Any de fundació","strip.2":"Divisions","strip.3":"Persones","strip.4":"Superfície productiva","strip.4v":"26.000 m²",
+"div.eyebrow":"Divisions","div.h2":"Quatre especialitats que treballen com una de sola.",
+"div.lede":"Cada divisió té el seu equip, la seva planta i els seus certificats. El que comparteixen és l'enginyeria, les compres i un únic cap de projecte que et dona la cara de principi a fi.",
+"div.1.t":"Metall","div.1.d":"Mecanització, caldereria i estructures en acer, inoxidable i alumini. De la peça unitària a la sèrie curta, amb tolerància de ±0,02 mm i traçabilitat de colada en cada lliurament.",
+"div.2.t":"Fusta i interiorisme","div.2.d":"Mobiliari tècnic i fusteria a mida per a retail, hoteleria i oficina. Fem el prototip, la producció i el muntatge a obra amb el mateix equip que ha dibuixat el projecte.",
+"div.3.t":"Energia i manteniment","div.3.d":"Instal·lacions elèctriques de baixa i mitjana tensió, automatització i manteniment preventiu. Contracte anual amb compromís de resposta en 24 hores a tota la zona.",
+"div.4.t":"Logística i muntatge","div.4.d":"Flota pròpia per a càrregues fora de mida i equips de muntatge amb pla de seguretat propi. Movem, aixequem i posem en marxa el que hem fabricat.",
+"tag.1a":"CNC 5 eixos","tag.2a":"CNC fusta","tag.2b":"Xapat","tag.2c":"Lacat","tag.3a":"BT / MT","tag.3c":"Resposta 24 h",
+"tag.4a":"Càrrega especial","tag.4b":"Muntatge a obra","tag.4c":"PRL propi",
+"fig.eyebrow":"Xifres","fig.h2":"El que hi ha darrere de cada lliurament.",
+"fig.1":"Anys d'activitat ininterrompuda des del primer taller de Figueres.",
+"fig.2":"Persones en plantilla, el 78 % amb contracte indefinit.",
+"fig.3":"Plantes productives a Catalunya, França i Aragó.",
+"fig.4":"Països on hem lliurat i muntat projectes.",
+"fig.5":"Comandes lliurades dins la data compromesa durant el 2025.",
+"fig.6":"Projectes tancats l'any passat, de la reparació d'un dia a l'obra de sis mesos.",
+"proc.eyebrow":"Com treballem","proc.h2":"Cinc passos, sempre els mateixos.",
+"proc.lede":"No improvisem el mètode segons el client. Aquest és l'ordre que seguim tant en una reparació de dos dies com en una línia de producció sencera.",
+"proc.1.t":"Consulta i visita","proc.1.d":"Anem a la teva planta o a l'obra a mirar-ho amb els nostres ulls. Sense compromís i sense cost, també si al final no ens encarregues res.",
+"proc.2.t":"Enginyeria i oferta","proc.2.d":"Càlcul, plànols i pressupost tancat en cinc dies laborables. El preu que signes és el preu que pagues, tret que ens canviïs l'abast.",
+"proc.3.t":"Fabricació","proc.3.d":"Producció a planta pròpia amb seguiment obert: cada dilluns saps en quin punt exacte és la teva comanda i qui hi està treballant.",
+"proc.4.t":"Muntatge i posada en marxa","proc.4.d":"Equip propi a obra, amb pla de seguretat, coordinació d'activitats i acta de recepció signada el mateix dia que acabem.",
+"proc.5.t":"Manteniment","proc.5.d":"Contracte anual opcional amb revisions programades, recanvis en estoc i resposta en 24 hores quan alguna cosa s'atura.",
+"pres.eyebrow":"Presència","pres.h2":"Sis plantes, una hora de distància entre elles.",
+"pres.lede":"La producció es concentra al nord-est peninsular i el sud de França. Estan prou a prop com per moure una peça d'una planta a l'altra el mateix dia i prou repartides com per arribar a obra sense fer nit.",
+"pres.p1":"Seu central i divisió de metall","pres.p2":"Fusta i interiorisme","pres.p3":"Energia i manteniment",
+"pres.p4":"Logística i magatzem regulador","pres.p5":"Metall — mercat francès","pres.p6":"Base de muntatge per a la meitat oest",
+"proj.eyebrow":"Projectes","proj.h2":"Tres encàrrecs recents, amb la xifra que importava al client.",
+"proj.1.k":"Metall + Energia","proj.1.t":"Línia d'envasat per a una cooperativa agroalimentària",
+"proj.1.d":"Estructura, cintes, quadre elèctric i automatització, amb la campanya de collita ja tancada com a data límit innegociable.",
+"proj.1.m":"setmanes de la comanda a la posada en marxa",
+"proj.2.k":"Fusta i interiorisme","proj.2.t":"Quaranta-dues habitacions d'hotel, mobiliari complet",
+"proj.2.d":"Capçals, armaris i banys a mida fabricats per plantes senceres i muntats de nit per no tancar l'hotel cap dia.",
+"proj.2.m":"incidències obertes a l'acta de recepció",
+"proj.3.k":"Logística + Muntatge","proj.3.t":"Trasllat d'una planta sencera a 90 km",
+"proj.3.d":"Desmuntatge, transport especial de sis màquines de fins a 24 tones i remuntatge amb calibratge, per fases i sense aturar la producció.",
+"proj.3.m":"dies de trasllat, zero dies de fàbrica parada",
+"qual.eyebrow":"Qualitat i compromisos","qual.h2":"Els certificats que ens demanen, i els que no ens demana ningú.",
+"qual.c1":"Gestió de la qualitat","qual.c2":"Gestió ambiental","qual.c3":"Seguretat i salut a la feina",
+"qual.c4":"Estructures d'acer, classe d'execució EXC3","qual.c5":"Producte estructural i conjunts muntats",
+"qual.pledge":"Compromisos que ens hem posat nosaltres",
+"qual.m1":"Electricitat consumida que ve de les cobertes fotovoltaiques",
+"qual.m2":"Ferralla i retalls de fusta que tornen a la cadena de reciclatge",
+"qual.m3":"Compres a proveïdors a menys de 200 km",
+"qual.note":"Publiquem aquestes tres xifres cada gener a la memòria anual, hagin pujat o hagin baixat.",
+"job.eyebrow":"Treballar-hi","job.h2":"Busquem gent que vulgui quedar-s'hi.",
+"job.lede":"L'antiguitat mitjana a la casa és d'onze anys. Formem a dins, paguem per conveni del metall més un complement propi i el 78 % de la plantilla té contracte indefinit.",
+"job.1.t":"Programador/a CNC — 5 eixos","job.2.t":"Tècnic/a de manteniment elèctric","job.3.t":"Cap de projecte d'interiorisme",
+"job.full":"Jornada completa","job.shift":"Torns",
+"ct.eyebrow":"Contacte","ct.h2":"Explica'ns què necessites i et diem si ho sabem fer.",
+"ct.lede":"Si no és el nostre camp t'ho direm el mateix dia i, sempre que puguem, et passarem el nom d'algú que sí que ho faci.",
+"ct.l1":"Telèfon","ct.l2":"Correu","ct.l3":"Seu central","ct.l4":"Horari d'oficina",
+"ct.hours":"Dilluns a divendres, 8:00 – 17:30","ct.hours2":"Avaries amb contracte de manteniment: 24 h, tots els dies de l'any.",
+"ct.f1":"Nom i cognoms","ct.f2":"Empresa","ct.f3":"Correu electrònic","ct.f4":"Divisió que t'interessa","ct.f5":"Què necessites",
+"ct.opt5":"Encara no ho sé",
+"ct.note":"Responem tots els missatges en menys de 24 hores laborables. No fem servir les dades per a res més que per contestar-te.",
+"ct.send":"Enviar consulta",
+"ct.sent":"Aquesta pàgina és una demostració: el formulari no envia res enlloc. En una web real, aquest missatge arribaria a la teva bústia al moment.",
+"ft.blurb":"Grup industrial fundat a Figueres el 1968. Metall, fusta, energia i logística sota un mateix cap de projecte.",
+"ft.c1":"Divisions","ft.c2":"Grup","ft.qual":"Qualitat",
+"ft.legal":"© 2026 Grup Tramuntana · Avís legal · Privacitat · Cookies",
+"ft.demo":"Web de mostra · disseny de Biel Porté"
+},
+es:{
+"brand.sub":"Grupo Industrial",
+"nav.div":"Divisiones","nav.proc":"Cómo trabajamos","nav.pres":"Presencia","nav.proj":"Proyectos","nav.emp":"Empresa","nav.cta":"Contacto",
+"hero.eyebrow":"Grupo industrial · Desde 1968",
+"hero.h1":"Cuatro divisiones industriales, <em>un solo interlocutor.</em>",
+"hero.sub":"Diseñamos, fabricamos, instalamos y mantenemos. Del primer plano hasta la revisión del décimo año, cubrimos todo el ciclo de vida de un proyecto industrial sin que tengas que ir de proveedor en proveedor.",
+"hero.cta1":"Hablemos de tu proyecto","hero.cta2":"Ver las divisiones","hero.scroll":"Baja",
+"strip.1":"Año de fundación","strip.2":"Divisiones","strip.3":"Personas","strip.4":"Superficie productiva","strip.4v":"26.000 m²",
+"div.eyebrow":"Divisiones","div.h2":"Cuatro especialidades que trabajan como una sola.",
+"div.lede":"Cada división tiene su equipo, su planta y sus certificados. Lo que comparten es la ingeniería, las compras y un único jefe de proyecto que da la cara de principio a fin.",
+"div.1.t":"Metal","div.1.d":"Mecanizado, calderería y estructuras en acero, inoxidable y aluminio. De la pieza unitaria a la serie corta, con tolerancia de ±0,02 mm y trazabilidad de colada en cada entrega.",
+"div.2.t":"Madera e interiorismo","div.2.d":"Mobiliario técnico y carpintería a medida para retail, hostelería y oficina. Hacemos el prototipo, la producción y el montaje en obra con el mismo equipo que ha dibujado el proyecto.",
+"div.3.t":"Energía y mantenimiento","div.3.d":"Instalaciones eléctricas de baja y media tensión, automatización y mantenimiento preventivo. Contrato anual con compromiso de respuesta en 24 horas en toda la zona.",
+"div.4.t":"Logística y montaje","div.4.d":"Flota propia para cargas fuera de medida y equipos de montaje con plan de seguridad propio. Movemos, izamos y ponemos en marcha lo que hemos fabricado.",
+"tag.1a":"CNC 5 ejes","tag.2a":"CNC madera","tag.2b":"Chapado","tag.2c":"Lacado","tag.3a":"BT / MT","tag.3c":"Respuesta 24 h",
+"tag.4a":"Carga especial","tag.4b":"Montaje en obra","tag.4c":"PRL propio",
+"fig.eyebrow":"Cifras","fig.h2":"Lo que hay detrás de cada entrega.",
+"fig.1":"Años de actividad ininterrumpida desde el primer taller de Figueres.",
+"fig.2":"Personas en plantilla, el 78 % con contrato indefinido.",
+"fig.3":"Plantas productivas en Cataluña, Francia y Aragón.",
+"fig.4":"Países donde hemos entregado y montado proyectos.",
+"fig.5":"Pedidos entregados dentro de la fecha comprometida durante 2025.",
+"fig.6":"Proyectos cerrados el año pasado, de la reparación de un día a la obra de seis meses.",
+"proc.eyebrow":"Cómo trabajamos","proc.h2":"Cinco pasos, siempre los mismos.",
+"proc.lede":"No improvisamos el método según el cliente. Este es el orden que seguimos tanto en una reparación de dos días como en una línea de producción entera.",
+"proc.1.t":"Consulta y visita","proc.1.d":"Vamos a tu planta o a la obra a verlo con nuestros propios ojos. Sin compromiso y sin coste, también si al final no nos encargas nada.",
+"proc.2.t":"Ingeniería y oferta","proc.2.d":"Cálculo, planos y presupuesto cerrado en cinco días laborables. El precio que firmas es el precio que pagas, salvo que nos cambies el alcance.",
+"proc.3.t":"Fabricación","proc.3.d":"Producción en planta propia con seguimiento abierto: cada lunes sabes en qué punto exacto está tu pedido y quién está trabajando en él.",
+"proc.4.t":"Montaje y puesta en marcha","proc.4.d":"Equipo propio en obra, con plan de seguridad, coordinación de actividades y acta de recepción firmada el mismo día que terminamos.",
+"proc.5.t":"Mantenimiento","proc.5.d":"Contrato anual opcional con revisiones programadas, recambios en stock y respuesta en 24 horas cuando algo se para.",
+"pres.eyebrow":"Presencia","pres.h2":"Seis plantas, una hora de distancia entre ellas.",
+"pres.lede":"La producción se concentra en el nordeste peninsular y el sur de Francia. Están lo bastante cerca como para mover una pieza de una planta a otra el mismo día y lo bastante repartidas como para llegar a obra sin hacer noche.",
+"pres.p1":"Sede central y división de metal","pres.p2":"Madera e interiorismo","pres.p3":"Energía y mantenimiento",
+"pres.p4":"Logística y almacén regulador","pres.p5":"Metal — mercado francés","pres.p6":"Base de montaje para la mitad oeste",
+"proj.eyebrow":"Proyectos","proj.h2":"Tres encargos recientes, con la cifra que le importaba al cliente.",
+"proj.1.k":"Metal + Energía","proj.1.t":"Línea de envasado para una cooperativa agroalimentaria",
+"proj.1.d":"Estructura, cintas, cuadro eléctrico y automatización, con la campaña de cosecha ya cerrada como fecha límite innegociable.",
+"proj.1.m":"semanas del pedido a la puesta en marcha",
+"proj.2.k":"Madera e interiorismo","proj.2.t":"Cuarenta y dos habitaciones de hotel, mobiliario completo",
+"proj.2.d":"Cabeceros, armarios y baños a medida fabricados por plantas enteras y montados de noche para no cerrar el hotel ni un día.",
+"proj.2.m":"incidencias abiertas en el acta de recepción",
+"proj.3.k":"Logística + Montaje","proj.3.t":"Traslado de una planta entera a 90 km",
+"proj.3.d":"Desmontaje, transporte especial de seis máquinas de hasta 24 toneladas y remontaje con calibrado, por fases y sin parar la producción.",
+"proj.3.m":"días de traslado, cero días de fábrica parada",
+"qual.eyebrow":"Calidad y compromisos","qual.h2":"Los certificados que nos piden, y los que no nos pide nadie.",
+"qual.c1":"Gestión de la calidad","qual.c2":"Gestión ambiental","qual.c3":"Seguridad y salud en el trabajo",
+"qual.c4":"Estructuras de acero, clase de ejecución EXC3","qual.c5":"Producto estructural y conjuntos montados",
+"qual.pledge":"Compromisos que nos hemos puesto nosotros",
+"qual.m1":"Electricidad consumida que viene de las cubiertas fotovoltaicas",
+"qual.m2":"Chatarra y recortes de madera que vuelven a la cadena de reciclaje",
+"qual.m3":"Compras a proveedores a menos de 200 km",
+"qual.note":"Publicamos estas tres cifras cada enero en la memoria anual, hayan subido o hayan bajado.",
+"job.eyebrow":"Trabajar aquí","job.h2":"Buscamos gente que quiera quedarse.",
+"job.lede":"La antigüedad media en la casa es de once años. Formamos dentro, pagamos por convenio del metal más un complemento propio y el 78 % de la plantilla tiene contrato indefinido.",
+"job.1.t":"Programador/a CNC — 5 ejes","job.2.t":"Técnico/a de mantenimiento eléctrico","job.3.t":"Jefe/a de proyecto de interiorismo",
+"job.full":"Jornada completa","job.shift":"Turnos",
+"ct.eyebrow":"Contacto","ct.h2":"Cuéntanos qué necesitas y te decimos si sabemos hacerlo.",
+"ct.lede":"Si no es nuestro campo te lo diremos el mismo día y, siempre que podamos, te pasaremos el nombre de alguien que sí lo haga.",
+"ct.l1":"Teléfono","ct.l2":"Correo","ct.l3":"Sede central","ct.l4":"Horario de oficina",
+"ct.hours":"Lunes a viernes, 8:00 – 17:30","ct.hours2":"Averías con contrato de mantenimiento: 24 h, todos los días del año.",
+"ct.f1":"Nombre y apellidos","ct.f2":"Empresa","ct.f3":"Correo electrónico","ct.f4":"División que te interesa","ct.f5":"Qué necesitas",
+"ct.opt5":"Todavía no lo sé",
+"ct.note":"Respondemos todos los mensajes en menos de 24 horas laborables. No usamos los datos para nada más que para contestarte.",
+"ct.send":"Enviar consulta",
+"ct.sent":"Esta página es una demostración: el formulario no envía nada a ninguna parte. En una web real, este mensaje llegaría a tu buzón al momento.",
+"ft.blurb":"Grupo industrial fundado en Figueres en 1968. Metal, madera, energía y logística bajo un mismo jefe de proyecto.",
+"ft.c1":"Divisiones","ft.c2":"Grupo","ft.qual":"Calidad",
+"ft.legal":"© 2026 Grup Tramuntana · Aviso legal · Privacidad · Cookies",
+"ft.demo":"Web de muestra · diseño de Biel Porté"
+},
+en:{
+"brand.sub":"Industrial Group",
+"nav.div":"Divisions","nav.proc":"How we work","nav.pres":"Presence","nav.proj":"Projects","nav.emp":"Company","nav.cta":"Contact",
+"hero.eyebrow":"Industrial group · Since 1968",
+"hero.h1":"Four industrial divisions, <em>one point of contact.</em>",
+"hero.sub":"We design, manufacture, install and maintain. From the first drawing to the tenth-year service, we cover the whole life of an industrial project so you never have to chase one supplier after another.",
+"hero.cta1":"Tell us about your project","hero.cta2":"See the divisions","hero.scroll":"Scroll",
+"strip.1":"Founded","strip.2":"Divisions","strip.3":"People","strip.4":"Production floor","strip.4v":"26,000 m²",
+"div.eyebrow":"Divisions","div.h2":"Four specialisms that work as one.",
+"div.lede":"Each division has its own team, plant and certifications. What they share is engineering, purchasing and a single project manager who answers for the job from start to finish.",
+"div.1.t":"Metal","div.1.d":"Machining, boilermaking and structures in steel, stainless and aluminium. From one-off parts to short runs, held to ±0.02 mm with heat-number traceability on every delivery.",
+"div.2.t":"Wood & interiors","div.2.d":"Technical furniture and bespoke joinery for retail, hospitality and offices. Prototype, production and on-site fitting are handled by the same team that drew the project.",
+"div.3.t":"Energy & maintenance","div.3.d":"Low- and medium-voltage electrical installations, automation and preventive maintenance. Annual contracts carry a 24-hour response commitment across the region.",
+"div.4.t":"Logistics & assembly","div.4.d":"Our own fleet for oversize loads and assembly crews with an in-house safety plan. We move, lift and commission what we build.",
+"tag.1a":"5-axis CNC","tag.2a":"Wood CNC","tag.2b":"Veneering","tag.2c":"Lacquering","tag.3a":"LV / MV","tag.3c":"24 h response",
+"tag.4a":"Oversize loads","tag.4b":"On-site assembly","tag.4c":"In-house safety",
+"fig.eyebrow":"Figures","fig.h2":"What sits behind every delivery.",
+"fig.1":"Years of unbroken activity since the first workshop in Figueres.",
+"fig.2":"People on the payroll, 78% on permanent contracts.",
+"fig.3":"Production plants across Catalonia, France and Aragon.",
+"fig.4":"Countries where we have delivered and installed projects.",
+"fig.5":"Orders delivered on the date we committed to during 2025.",
+"fig.6":"Projects closed last year, from a one-day repair to a six-month build.",
+"proc.eyebrow":"How we work","proc.h2":"Five steps, always the same.",
+"proc.lede":"We don't improvise the method per client. This is the order we follow for a two-day repair and for a whole production line alike.",
+"proc.1.t":"Enquiry and site visit","proc.1.d":"We come to your plant or site and look at it ourselves. No commitment, no charge, even if you end up not hiring us.",
+"proc.2.t":"Engineering and quote","proc.2.d":"Calculations, drawings and a fixed quote within five working days. The price you sign is the price you pay, unless you change the scope.",
+"proc.3.t":"Manufacturing","proc.3.d":"Production in our own plants with open tracking: every Monday you know exactly where your order stands and who is working on it.",
+"proc.4.t":"Installation and commissioning","proc.4.d":"Our own crew on site, with a safety plan, contractor coordination and a handover certificate signed the day we finish.",
+"proc.5.t":"Maintenance","proc.5.d":"Optional annual contract with scheduled inspections, spares held in stock and a 24-hour response when something stops.",
+"pres.eyebrow":"Presence","pres.h2":"Six plants, an hour apart.",
+"pres.lede":"Production is concentrated in north-east Spain and southern France: close enough to move a part between plants the same day, spread out enough to reach any site without an overnight stop.",
+"pres.p1":"Head office and metal division","pres.p2":"Wood and interiors","pres.p3":"Energy and maintenance",
+"pres.p4":"Logistics and buffer warehouse","pres.p5":"Metal — French market","pres.p6":"Assembly base for the western half",
+"proj.eyebrow":"Projects","proj.h2":"Three recent jobs, each with the number the client actually cared about.",
+"proj.1.k":"Metal + Energy","proj.1.t":"Packing line for an agri-food cooperative",
+"proj.1.d":"Structure, conveyors, switchboard and automation, with the harvest window as a deadline that could not move.",
+"proj.1.m":"weeks from order to commissioning",
+"proj.2.k":"Wood & interiors","proj.2.t":"Forty-two hotel rooms, furniture throughout",
+"proj.2.d":"Headboards, wardrobes and bathroom units built floor by floor and fitted at night so the hotel never closed.",
+"proj.2.m":"snags open at handover",
+"proj.3.k":"Logistics + Assembly","proj.3.t":"Moving an entire plant 90 km",
+"proj.3.d":"Dismantling, special transport for six machines of up to 24 tonnes and re-assembly with recalibration, phased so production never stopped.",
+"proj.3.m":"days of moving, zero days of downtime",
+"qual.eyebrow":"Quality and commitments","qual.h2":"The certifications clients ask for, and the ones nobody asks for.",
+"qual.c1":"Quality management","qual.c2":"Environmental management","qual.c3":"Occupational health and safety",
+"qual.c4":"Steel structures, execution class EXC3","qual.c5":"Structural products and assembled units",
+"qual.pledge":"Commitments we set ourselves",
+"qual.m1":"Electricity we use that comes from our own rooftop solar",
+"qual.m2":"Scrap metal and offcuts that go back into recycling",
+"qual.m3":"Purchasing from suppliers within 200 km",
+"qual.note":"We publish these three figures every January in the annual report, whether they went up or down.",
+"job.eyebrow":"Working here","job.h2":"We hire people who want to stay.",
+"job.lede":"Average time with us is eleven years. We train in-house, pay above the sector agreement, and 78% of the workforce is on a permanent contract.",
+"job.1.t":"CNC programmer — 5-axis","job.2.t":"Electrical maintenance technician","job.3.t":"Interiors project manager",
+"job.full":"Full time","job.shift":"Shift work",
+"ct.eyebrow":"Contact","ct.h2":"Tell us what you need and we'll tell you whether we can do it.",
+"ct.lede":"If it isn't our field we'll say so the same day and, whenever we can, pass you the name of someone who does it.",
+"ct.l1":"Phone","ct.l2":"Email","ct.l3":"Head office","ct.l4":"Office hours",
+"ct.hours":"Monday to Friday, 8:00 – 17:30","ct.hours2":"Breakdowns under a maintenance contract: 24 h, every day of the year.",
+"ct.f1":"Full name","ct.f2":"Company","ct.f3":"Email","ct.f4":"Division you're interested in","ct.f5":"What you need",
+"ct.opt5":"Not sure yet",
+"ct.note":"We answer every message within 24 working hours. We don't use your details for anything other than replying.",
+"ct.send":"Send enquiry",
+"ct.sent":"This page is a demo: the form doesn't send anywhere. On a live site, this message would land in your inbox straight away.",
+"ft.blurb":"Industrial group founded in Figueres in 1968. Metal, wood, energy and logistics under one project manager.",
+"ft.c1":"Divisions","ft.c2":"Group","ft.qual":"Quality",
+"ft.legal":"© 2026 Grup Tramuntana · Legal notice · Privacy · Cookies",
+"ft.demo":"Sample site · designed by Biel Porté"
+}
+};
+
+var LOCALE = {ca:"ca-ES", es:"es-ES", en:"en-GB"};
+var lang = "ca";
+
+function applyLang(next){
+  if(!I18N[next]) return;
+  lang = next;
+  var dict = I18N[lang];
+  document.documentElement.setAttribute("lang", lang);
+
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var v = dict[el.getAttribute("data-i18n")];
+    if(typeof v === "string") el.textContent = v;
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(function(el){
+    var v = dict[el.getAttribute("data-i18n-html")];
+    if(typeof v === "string") el.innerHTML = v;
+  });
+  document.querySelectorAll(".lang button").forEach(function(b){
+    b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
+  });
+  document.querySelectorAll(".ctr").forEach(function(el){
+    if(el.dataset.done) el.textContent = fmt(parseFloat(el.dataset.count), +(el.dataset.dec || 0));
+  });
+}
+
+function fmt(n, dec){
+  try{
+    return new Intl.NumberFormat(LOCALE[lang], {minimumFractionDigits:dec, maximumFractionDigits:dec}).format(n);
+  }catch(e){ return String(n); }
+}
+
+document.querySelectorAll(".lang button").forEach(function(b){
+  b.addEventListener("click", function(){ applyLang(b.getAttribute("data-lang")); });
+});
+document.documentElement.setAttribute("lang", "ca");
+
+/* ============================================================
+   2. header behaviour
+   ============================================================ */
+var hdr = document.getElementById("hdr");
+var lastY = window.scrollY;
+var ticking = false;
+
+function onScroll(){
+  var y = window.scrollY;
+  hdr.classList.toggle("is-stuck", y > 40);
+  if(!sheet.classList.contains("is-open")){
+    hdr.classList.toggle("is-hidden", y > 320 && y > lastY + 4);
+  }
+  lastY = y;
+  ticking = false;
+}
+window.addEventListener("scroll", function(){
+  if(!ticking){ ticking = true; requestAnimationFrame(onScroll); }
+}, {passive:true});
+
+/* mobile sheet */
+var sheet = document.getElementById("sheet");
+var burger = document.getElementById("burger");
+function setSheet(open){
+  sheet.classList.toggle("is-open", open);
+  burger.setAttribute("aria-expanded", open ? "true" : "false");
+  document.body.style.overflow = open ? "hidden" : "";
+  if(open) hdr.classList.remove("is-hidden");
+}
+burger.addEventListener("click", function(){ setSheet(!sheet.classList.contains("is-open")); });
+sheet.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ setSheet(false); }); });
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") setSheet(false); });
+
+/* active nav link */
+var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+var watched = navLinks.map(function(a){ return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
+if("IntersectionObserver" in window && watched.length){
+  var navObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      navLinks.forEach(function(a){
+        a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+      });
+    });
+  }, {rootMargin:"-45% 0px -50% 0px"});
+  watched.forEach(function(s){ navObs.observe(s); });
+}
+
+/* ============================================================
+   3. reveals, counters, meters
+   ============================================================ */
+var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+document.querySelectorAll(".rv").forEach(function(el){
+  var sibs = Array.prototype.slice.call(el.parentNode.children).filter(function(n){ return n.classList.contains("rv"); });
+  var i = sibs.indexOf(el);
+  if(i > 0 && !reduce) el.style.transitionDelay = Math.min(i, 5) * 70 + "ms";
+});
+
+function easeOut(t){ return 1 - Math.pow(1 - t, 3); }
+
+function runCounter(el){
+  if(el.dataset.done) return;
+  el.dataset.done = "1";
+  var target = parseFloat(el.dataset.count);
+  var dec = +(el.dataset.dec || 0);
+  if(reduce){ el.textContent = fmt(target, dec); return; }
+  var t0 = performance.now(), dur = 1500;
+  (function tick(now){
+    var p = Math.min(1, (now - t0) / dur);
+    el.textContent = fmt(target * easeOut(p), dec);
+    if(p < 1) requestAnimationFrame(tick); else el.textContent = fmt(target, dec);
+  })(t0);
+}
+
+if("IntersectionObserver" in window){
+  var revObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      en.target.classList.add("is-in");
+      en.target.querySelectorAll(".ctr").forEach(runCounter);
+      en.target.querySelectorAll(".meter-fill").forEach(function(f){ f.style.width = f.dataset.fill + "%"; });
+      revObs.unobserve(en.target);
+    });
+  }, {rootMargin:"0px 0px -12% 0px", threshold:0.15});
+  document.querySelectorAll(".rv").forEach(function(el){ revObs.observe(el); });
+}else{
+  document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("is-in"); });
+  document.querySelectorAll(".ctr").forEach(runCounter);
+  document.querySelectorAll(".meter-fill").forEach(function(f){ f.style.width = f.dataset.fill + "%"; });
+}
+
+/* ============================================================
+   4. form
+   ============================================================ */
+var form = document.getElementById("form");
+var sentBox = document.getElementById("sent");
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  var ok = true;
+  ["f-name","f-mail","f-msg"].forEach(function(id){
+    var f = document.getElementById(id);
+    if(!f.value.trim()){ f.style.borderColor = "var(--accent)"; ok = false; }
+    else f.style.borderColor = "";
+  });
+  if(!ok) return;
+  sentBox.classList.add("is-on");
+  form.querySelector("button[type=submit]").disabled = true;
+  sentBox.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"center"});
+});
+
+/* ============================================================
+   5. hero — tramuntana wind field
+   ============================================================ */
+var cv = document.getElementById("wind");
+var ctx = cv.getContext("2d");
+var W = 0, H = 0, parts = [], raf = 0, visible = true;
+
+function spawn(){
+  return {
+    x: Math.random() * W,
+    y: Math.random() * H * 1.15 - H * 0.1,
+    age: 0,
+    life: 70 + Math.random() * 190,
+    w: Math.random() < 0.07 ? 1.5 : 0.7,
+    hot: Math.random() < 0.055,
+    sp: 0.75 + Math.random() * 1.05
+  };
+}
+
+function sizeCanvas(){
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  var r = cv.getBoundingClientRect();
+  W = Math.max(1, r.width); H = Math.max(1, r.height);
+  cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.lineCap = "round";
+  var n = Math.round(Math.min(460, (W * H) / 2500));
+  parts = [];
+  for(var i = 0; i < n; i++) parts.push(spawn());
+  ctx.fillStyle = "#0B1015";
+  ctx.fillRect(0, 0, W, H);
+}
+
+/* the tramuntana runs north to south-west: on screen, down and slightly left */
+function field(x, y, t){
+  return 2.02
+    + Math.sin(y * 0.0056 + t * 0.00022) * 0.42
+    + Math.cos(x * 0.0041 - t * 0.00017) * 0.30
+    + Math.sin((x + y) * 0.0016) * 0.16;
+}
+
+function step(p, t){
+  var a = field(p.x, p.y, t);
+  var nx = p.x + Math.cos(a) * p.sp * 1.5;
+  var ny = p.y + Math.sin(a) * p.sp * 1.5;
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y);
+  ctx.lineTo(nx, ny);
+  ctx.strokeStyle = p.hot ? "rgba(238,116,66,0.55)" : "rgba(233,235,232,0.17)";
+  ctx.lineWidth = p.w;
+  ctx.stroke();
+  p.x = nx; p.y = ny; p.age++;
+  if(p.age > p.life || nx < -30 || nx > W + 30 || ny < -30 || ny > H + 30){
+    var s = spawn();
+    s.y = Math.random() < 0.6 ? -10 : Math.random() * H;
+    s.x = Math.random() * (W + 220) - 20;
+    s.age = 0;
+    p.x = s.x; p.y = s.y; p.age = 0; p.life = s.life; p.w = s.w; p.hot = s.hot; p.sp = s.sp;
+  }
+}
+
+function frame(now){
+  ctx.fillStyle = "rgba(11,16,21,0.055)";
+  ctx.fillRect(0, 0, W, H);
+  for(var i = 0; i < parts.length; i++) step(parts[i], now);
+  raf = requestAnimationFrame(frame);
+}
+
+function startWind(){
+  sizeCanvas();
+  if(reduce){
+    for(var k = 0; k < 340; k++){
+      for(var i = 0; i < parts.length; i++) step(parts[i], 0);
+    }
+    return;
+  }
+  cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(frame);
+}
+
+var resizeTimer;
+window.addEventListener("resize", function(){
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function(){
+    if(!reduce) cancelAnimationFrame(raf);
+    startWind();
+  }, 220);
+});
+
+/* stop the loop while the hero is off screen */
+if("IntersectionObserver" in window && !reduce){
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting && !visible){ visible = true; raf = requestAnimationFrame(frame); }
+      else if(!en.isIntersecting && visible){ visible = false; cancelAnimationFrame(raf); }
+    });
+  }, {threshold:0}).observe(cv);
+}
+
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(startWind); } else { startWind(); }
+})();
+</script>
+
+</body>
+</html>

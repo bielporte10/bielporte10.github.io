@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forn Sa Fornera — Blanes</title>
+<meta name="description" content="El forn del barri de Mas Florit, a Blanes. Pa artesà, brioixeria i cafè des de les 6:30 del matí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F6EFE4;
+    --surface: #FFFAF2;
+    --surface-alt: #EFE3D1;
+    --ink: #2E1F14;
+    --ink-soft: #6B5442;
+    --ink-faint: #9C8672;
+    --crust: #B4622A;
+    --crust-deep: #8A461B;
+    --night: #23324A;
+    --on-dark: #F6EFE4;
+    --line: rgba(46, 31, 20, 0.13);
+    --shadow: rgba(46, 31, 20, 0.14);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #191310;
+      --surface: #221A15;
+      --surface-alt: #2C221B;
+      --ink: #F3E9DC;
+      --ink-soft: #C9B7A3;
+      --ink-faint: #93806D;
+      --crust: #E08D4C;
+      --crust-deep: #F0A868;
+      --night: #16202F;
+      --on-dark: #F3E9DC;
+      --line: rgba(243, 233, 220, 0.14);
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #191310;
+    --surface: #221A15;
+    --surface-alt: #2C221B;
+    --ink: #F3E9DC;
+    --ink-soft: #C9B7A3;
+    --ink-faint: #93806D;
+    --crust: #E08D4C;
+    --crust-deep: #F0A868;
+    --night: #16202F;
+    --on-dark: #F3E9DC;
+    --line: rgba(243, 233, 220, 0.14);
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: Fraunces, Georgia, "Times New Roman", serif;
+    line-height: 1.12;
+    margin: 0 0 .6em;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  a { color: inherit; }
+
+  .wrap { width: min(1080px, 92vw); margin: 0 auto; }
+
+  /* ---------- barra ---------- */
+  header.bar {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar-in { display: flex; align-items: center; gap: 1rem; padding: .7rem 0; }
+  .brand { display: flex; align-items: center; gap: .6rem; font-family: Fraunces, serif; font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; }
+  .brand svg { flex: none; }
+  nav.links { margin-left: auto; display: flex; gap: 1.4rem; font-size: .93rem; font-weight: 500; }
+  nav.links a { text-decoration: none; color: var(--ink-soft); }
+  nav.links a:hover { color: var(--crust); }
+  .theme-btn {
+    margin-left: 1rem; border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink-soft); border-radius: 999px; width: 34px; height: 34px;
+    cursor: pointer; font-size: .95rem; line-height: 1; display: grid; place-items: center;
+  }
+  .theme-btn:hover { color: var(--crust); border-color: var(--crust); }
+  @media (max-width: 700px) { nav.links { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: clamp(3rem, 9vw, 6.5rem) 0 clamp(2.5rem, 6vw, 4.5rem); }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 90% at 15% -10%, color-mix(in srgb, var(--crust) 22%, transparent), transparent 62%),
+      radial-gradient(90% 80% at 95% 8%, color-mix(in srgb, var(--night) 16%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-in { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  @media (max-width: 860px) { .hero-in { grid-template-columns: 1fr; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--crust-deep); margin-bottom: 1.1rem;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--crust); border-radius: 2px; }
+
+  .hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.2rem); margin-bottom: .35em; }
+  .hero h1 em { font-style: italic; color: var(--crust-deep); }
+  .lede { font-size: clamp(1.05rem, 2.2vw, 1.22rem); color: var(--ink-soft); max-width: 46ch; margin: 0 0 1.9rem; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .82rem 1.5rem; border-radius: 999px; text-decoration: none;
+    font-weight: 600; font-size: .97rem; border: 1px solid transparent; transition: transform .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-main { background: var(--crust); color: #fff; box-shadow: 0 8px 20px -8px var(--shadow); }
+  .btn-ghost { border-color: var(--line); color: var(--ink); background: var(--surface); }
+
+  /* rellotge del hero */
+  .clock {
+    position: relative; background: var(--night); color: var(--on-dark);
+    border-radius: 22px; padding: 2rem 1.8rem; box-shadow: 0 22px 44px -22px var(--shadow);
+    overflow: hidden;
+  }
+  .clock::after {
+    content: ""; position: absolute; left: -20%; right: -20%; bottom: -60%; height: 90%;
+    background: radial-gradient(closest-side, rgba(224,141,76,.42), transparent 72%);
+  }
+  .clock-label { position: relative; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; opacity: .72; font-weight: 700; }
+  .clock-time { position: relative; font-family: Fraunces, serif; font-size: clamp(3.4rem, 9vw, 4.6rem); font-weight: 700; line-height: 1; margin: .25rem 0 .5rem; }
+  .clock-note { position: relative; font-size: .95rem; opacity: .85; margin: 0; }
+
+  /* ---------- seccions ---------- */
+  section { padding: clamp(3rem, 7vw, 5.2rem) 0; }
+  .sec-head { max-width: 56ch; margin-bottom: 2.6rem; }
+  .sec-head h2 { font-size: clamp(1.7rem, 3.8vw, 2.5rem); }
+  .sec-head p { color: var(--ink-soft); margin: 0; }
+
+  .band { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* història */
+  .story { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3.4rem); align-items: start; }
+  @media (max-width: 800px) { .story { grid-template-columns: 1fr; } }
+  .story p { color: var(--ink-soft); }
+  .story p strong { color: var(--ink); font-weight: 600; }
+
+  .timeline { border-left: 2px solid var(--line); padding-left: 1.4rem; display: grid; gap: 1.4rem; }
+  .tl-item { position: relative; }
+  .tl-item::before {
+    content: ""; position: absolute; left: calc(-1.4rem - 6px); top: .45rem;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--crust);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .tl-year { font-family: Fraunces, serif; font-weight: 700; font-size: 1.05rem; }
+  .tl-text { color: var(--ink-soft); font-size: .96rem; }
+
+  /* productes */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(228px, 1fr)); gap: 1.1rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 1.6rem 1.5rem; transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px -18px var(--shadow); }
+  .card h3 { font-size: 1.16rem; margin-bottom: .4em; }
+  .card p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+  .ico { width: 40px; height: 40px; margin-bottom: 1rem; color: var(--crust); }
+
+  /* horari */
+  .hours-wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(1.6rem, 4vw, 3.2rem); align-items: center; }
+  @media (max-width: 800px) { .hours-wrap { grid-template-columns: 1fr; } }
+  table.hours { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  table.hours td { padding: .82rem 1.15rem; border-bottom: 1px solid var(--line); font-size: .97rem; }
+  table.hours tr:last-child td { border-bottom: none; }
+  table.hours td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-soft); }
+  table.hours tr.today { background: color-mix(in srgb, var(--crust) 13%, transparent); }
+  table.hours tr.today td { font-weight: 700; color: var(--ink); }
+  .today-tag { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--crust-deep); margin-left: .5rem; font-weight: 700; }
+  .closed { color: var(--ink-faint); font-style: italic; }
+
+  .status {
+    display: inline-flex; align-items: center; gap: .55rem; padding: .5rem 1rem;
+    border-radius: 999px; font-weight: 600; font-size: .92rem; margin-bottom: 1.2rem;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-faint); }
+  .dot.open { background: #3F9D63; box-shadow: 0 0 0 4px rgba(63,157,99,.18); }
+
+  /* contacte */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 4vw, 3.2rem); }
+  @media (max-width: 800px) { .contact { grid-template-columns: 1fr; } }
+  .info-line { display: flex; gap: .85rem; align-items: flex-start; padding: .95rem 0; border-bottom: 1px solid var(--line); }
+  .info-line:last-child { border-bottom: none; }
+  .info-line svg { flex: none; color: var(--crust); margin-top: .18rem; }
+  .info-line strong { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .09em; color: var(--ink-faint); font-weight: 700; }
+  .info-line span, .info-line a { font-size: 1.02rem; text-decoration: none; }
+  .info-line a:hover { color: var(--crust); }
+
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.7rem; }
+  label { display: block; font-size: .84rem; font-weight: 600; margin-bottom: .35rem; color: var(--ink-soft); }
+  input, textarea {
+    width: 100%; padding: .72rem .9rem; margin-bottom: 1rem; font: inherit; font-size: .96rem;
+    border: 1px solid var(--line); border-radius: 11px; background: var(--bg); color: var(--ink);
+  }
+  input:focus, textarea:focus { outline: 2px solid var(--crust); outline-offset: 1px; border-color: transparent; }
+  textarea { resize: vertical; min-height: 92px; }
+  .form-note { font-size: .85rem; color: var(--ink-faint); margin: .6rem 0 0; }
+
+  .notice {
+    background: color-mix(in srgb, var(--crust) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--crust) 38%, transparent);
+    border-radius: 14px; padding: 1rem 1.2rem; font-size: .93rem; color: var(--ink-soft);
+    margin-top: 1.2rem;
+  }
+  .notice strong { color: var(--ink); }
+
+  footer { background: var(--night); color: var(--on-dark); padding: 2.6rem 0; margin-top: 0; }
+  .foot-in { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; font-size: .9rem; }
+  footer .brand { color: var(--on-dark); }
+  footer a { color: var(--on-dark); }
+  .foot-note { opacity: .68; max-width: 52ch; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <div class="brand">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 21V8"/><path d="M12 11c0-2 1.4-3.4 3-3.4S18 9 18 11s-1.4 3-3 3-3-1-3-3Z"/>
+        <path d="M12 11c0-2-1.4-3.4-3-3.4S6 9 6 11s1.4 3 3 3 3-1 3-3Z"/>
+        <path d="M12 6.5c0-1.6 1-2.9 2.4-3.3M12 6.5c0-1.6-1-2.9-2.4-3.3"/>
+      </svg>
+      Forn Sa Fornera
+    </div>
+    <nav class="links">
+      <a href="#historia">El forn</a>
+      <a href="#productes">Què hi trobaràs</a>
+      <a href="#horari">Horari</a>
+      <a href="#contacte">On som</a>
+    </nav>
+    <button class="theme-btn" id="theme" aria-label="Canviar entre mode clar i fosc">◐</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <span class="eyebrow">Barri de Mas Florit · Blanes</span>
+      <h1>Quan surts de casa,<br>el pa ja <em>és fet</em>.</h1>
+      <p class="lede">Som el forn que obre més aviat de Blanes. A dos quarts de set del matí ja tenim el taulell ple de pa acabat de coure, brioixeria i cafè per emportar.</p>
+      <div class="cta-row">
+        <a class="btn btn-main" href="#horari">Veure l'horari</a>
+        <a class="btn btn-ghost" href="tel:+34682858708">Truca'ns</a>
+      </div>
+    </div>
+    <div class="clock">
+      <div class="clock-label">Obrim a les</div>
+      <div class="clock-time">6:30</div>
+      <p class="clock-note">De dilluns a divendres. Perquè molts veïns passen a buscar el pa abans d'anar a treballar, i això no ho hem volgut canviar.</p>
+    </div>
+  </div>
+</section>
+
+<section id="historia" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>El barri torna a tenir forn</h2>
+      <p>Mas Florit va estar uns mesos sense forn per primera vegada en gairebé cinquanta anys. Vam obrir per posar-hi remei.</p>
+    </div>
+    <div class="story">
+      <div>
+        <p>Durant dècades, aquest local va ser el forn del barri. Quan va tancar, el veïnat es va quedar sense l'única fleca de Mas Florit i molta gent va haver de començar a baixar al centre a buscar el pa.</p>
+        <p><strong>El maig del 2026 vam tornar a encendre el forn.</strong> Amb un nom nou, però amb la mateixa idea de sempre: pa fet cada dia, obert d'hora, i tracte de barri.</p>
+        <p>El dia que vam obrir vam fer tastet per a tothom. Va venir molta gent i encara ens ho recorden.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">1978</div>
+          <div class="tl-text">Obre el forn del barri en aquest mateix local, a Mas Florit.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Febrer 2026</div>
+          <div class="tl-text">Tanca després de gairebé cinquanta anys. El barri es queda sense fleca.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Maig 2026</div>
+          <div class="tl-text">Obre <strong>Forn Sa Fornera</strong> amb tastet gratuït per als veïns. Es manté l'horari matiner de sempre.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="productes">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Què hi trobaràs</h2>
+      <p>Poca cosa, però ben feta i cada dia.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 13c0-3.3 3.6-6 8-6s8 2.7 8 6c0 2.2-1.4 4-4 4H8c-2.6 0-4-1.8-4-4Z"/>
+          <path d="M8.5 8.5 7 12M12 8v4.5M15.5 8.5 17 12"/>
+        </svg>
+        <h3>Pa artesà</h3>
+        <p>Barres, rodons i pans especials, fets i cuits aquí mateix cada matí.</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4c2.6 0 4.6 1.7 4.6 4 0 .8-.2 1.4-.6 2 1.6.5 2.7 1.8 2.7 3.4 0 2.1-1.9 3.6-4.3 3.6H9.6C7.2 17 5.3 15.5 5.3 13.4c0-1.6 1.1-2.9 2.7-3.4-.4-.6-.6-1.2-.6-2 0-2.3 2-4 4.6-4Z"/>
+          <path d="M9 20h6"/>
+        </svg>
+        <h3>Brioixeria</h3>
+        <p>Croissants, ensaïmades i el dolç del dia per esmorzar o berenar.</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 11h14v4.5A3.5 3.5 0 0 1 13.5 19h-7A3.5 3.5 0 0 1 3 15.5V11Z"/>
+          <path d="M17 12h1.8a2.2 2.2 0 1 1 0 4.4H17"/>
+          <path d="M7 7.5c0-1 .8-1.4.8-2.3M11 7.5c0-1 .8-1.4.8-2.3"/>
+        </svg>
+        <h3>Cafè per emportar</h3>
+        <p>La novetat de la casa: cafè acabat de fer per endur-te'l de camí a la feina.</p>
+      </div>
+      <div class="card">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4.5 9.5 12 6l7.5 3.5-7.5 3.5-7.5-3.5Z"/>
+          <path d="M4.5 13.5 12 17l7.5-3.5"/>
+        </svg>
+        <h3>Entrepans</h3>
+        <p>Fets al moment amb el nostre pa, per esmorzar o per emportar-te a la feina.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="horari" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Quan ens trobaràs</h2>
+      <p>Obrim d'hora i tanquem a primera tarda. Diumenge descansem.</p>
+    </div>
+    <div class="hours-wrap">
+      <div>
+        <div class="status"><span class="dot" id="dot"></span><span id="status-text">Consulta l'horari</span></div>
+        <table class="hours">
+          <tbody>
+            <tr data-day="1"><td>Dilluns</td><td>6:30 – 13:30</td></tr>
+            <tr data-day="2"><td>Dimarts</td><td>6:30 – 13:30</td></tr>
+            <tr data-day="3"><td>Dimecres</td><td>6:30 – 13:30</td></tr>
+            <tr data-day="4"><td>Dijous</td><td>6:30 – 13:30</td></tr>
+            <tr data-day="5"><td>Divendres</td><td>6:30 – 13:30</td></tr>
+            <tr data-day="6"><td>Dissabte</td><td>7:00 – 14:00</td></tr>
+            <tr data-day="0"><td>Diumenge</td><td class="closed">Tancat</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p style="color: var(--ink-soft); margin-top: 0;">Si necessites una comanda especial —pans per a una celebració, entrepans per a una colla, coques per emportar— avisa'ns amb un dia i te la tenim a punt a l'hora que vulguis.</p>
+        <a class="btn btn-main" href="#contacte">Fer una comanda</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacte">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>On som</h2>
+      <p>Al mig del barri de Mas Florit, allà on sempre hi ha hagut el forn.</p>
+    </div>
+    <div class="contact">
+      <div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><strong>Adreça</strong><span>Carrer Mas Florit, 13 · 17300 Blanes</span></div>
+        </div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5L16 12l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 6.2 2 2 0 0 1 6 4Z"/></svg>
+          <div><strong>Telèfon i WhatsApp</strong><a href="tel:+34682858708">682 85 87 08</a></div>
+        </div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg>
+          <div><strong>Horari</strong><span>Dl–Dv 6:30–13:30 · Ds 7:00–14:00 · Dg tancat</span></div>
+        </div>
+        <div class="notice">
+          <strong>Aquesta pàgina és una demostració.</strong> L'he preparada en Biel Porté com a exemple de com podria ser la web del Forn Sa Fornera. El contingut és real però no oficial, i el formulari no envia res enlloc.
+        </div>
+      </div>
+      <form onsubmit="event.preventDefault(); document.getElementById('sent').hidden = false;">
+        <label for="nom">El teu nom</label>
+        <input id="nom" name="nom" type="text" placeholder="Com et dius?" required>
+        <label for="tel">Telèfon</label>
+        <input id="tel" name="tel" type="tel" placeholder="Per avisar-te quan estigui llest">
+        <label for="msg">Què necessites?</label>
+        <textarea id="msg" name="msg" placeholder="Per exemple: 20 entrepans per dissabte al matí"></textarea>
+        <button class="btn btn-main" type="submit" style="border:none; cursor:pointer; width:100%; justify-content:center;">Enviar la comanda</button>
+        <p class="form-note" id="sent" hidden>Gràcies! En una web real, aquest missatge arribaria al forn. Aquí no s'envia enlloc: és una demostració.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div class="brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M12 21V8"/><path d="M12 11c0-2 1.4-3.4 3-3.4S18 9 18 11s-1.4 3-3 3-3-1-3-3Z"/>
+        <path d="M12 11c0-2-1.4-3.4-3-3.4S6 9 6 11s1.4 3 3 3 3-1 3-3Z"/>
+      </svg>
+      Forn Sa Fornera
+    </div>
+    <p class="foot-note">Demostració feta per Biel Porté · Pàgines web per a negocis locals · 682 28 66 56</p>
+  </div>
+</footer>
+
+<script>
+  // Tema clar/fosc
+  var root = document.documentElement;
+  var btn = document.getElementById('theme');
+  try {
+    var saved = localStorage.getItem('sf-theme');
+    if (saved) root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  btn.addEventListener('click', function () {
+    var isDark = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var next = isDark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('sf-theme', next); } catch (e) {}
+  });
+
+  // Marcar el dia d'avui i dir si som oberts
+  (function () {
+    var HOURS = { 1: [390, 810], 2: [390, 810], 3: [390, 810], 4: [390, 810], 5: [390, 810], 6: [420, 840], 0: null };
+    var now = new Date();
+    var day = now.getDay();
+    var mins = now.getHours() * 60 + now.getMinutes();
+
+    var row = document.querySelector('tr[data-day="' + day + '"]');
+    if (row) {
+      row.classList.add('today');
+      var tag = document.createElement('span');
+      tag.className = 'today-tag';
+      tag.textContent = 'Avui';
+      row.cells[0].appendChild(tag);
+    }
+
+    var today = HOURS[day];
+    var open = today && mins >= today[0] && mins < today[1];
+    document.getElementById('dot').className = 'dot' + (open ? ' open' : '');
+    document.getElementById('status-text').textContent = open
+      ? 'Obert ara mateix'
+      : (day === 0 ? 'Avui tancat · obrim dilluns a les 6:30' : 'Tancat ara mateix');
+  })();
+</script>
+
+</body>
+</html>

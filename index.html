@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biel Porté — One page websites & Catalan translation</title>
+<meta name="description" content="I build fast one page websites for small businesses and translate them into natural Catalan and Spanish. Barcelona.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1013;
+    --bg2:#14171c;
+    --line:#23272e;
+    --txt:#f2f4f7;
+    --mut:#9aa1ad;
+    --acc:#e8a33d;
+    --acc2:#5aa9e6;
+    --max:1080px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.6;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px}
+  a{color:inherit}
+
+  /* ---------- hero ---------- */
+  header{padding:96px 0 72px; position:relative; overflow:hidden}
+  header::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(760px 420px at 78% 12%, rgba(232,163,61,.13), transparent 62%);
+  }
+  .eyebrow{
+    font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--acc); margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(38px,6vw,68px); line-height:1.03; font-weight:900;
+    letter-spacing:-.025em; max-width:16ch;
+  }
+  h1 em{font-style:normal; color:var(--acc)}
+  .lede{
+    margin-top:26px; font-size:clamp(17px,2.2vw,21px); color:var(--mut);
+    max-width:60ch; font-weight:500;
+  }
+  .accions{margin-top:38px; display:flex; gap:14px; flex-wrap:wrap}
+  .btn{
+    display:inline-block; padding:15px 28px; border-radius:8px; font-weight:700;
+    font-size:16px; text-decoration:none; transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-p{background:var(--acc); color:#191104}
+  .btn-s{border:1px solid var(--line); color:var(--txt)}
+  .btn-s:hover{background:var(--bg2)}
+
+  /* ---------- seccions ---------- */
+  section{padding:76px 0; border-top:1px solid var(--line)}
+  .titol-sec{
+    font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--mut); margin-bottom:12px;
+  }
+  h2{font-size:clamp(28px,4vw,40px); font-weight:800; letter-spacing:-.02em; line-height:1.15}
+  .sec-intro{margin-top:14px; color:var(--mut); max-width:62ch; font-size:17px}
+
+  /* ---------- projectes ---------- */
+  .projectes{margin-top:44px; display:grid; gap:34px}
+  .proj{
+    background:var(--bg2); border:1px solid var(--line); border-radius:14px;
+    overflow:hidden; display:grid; grid-template-columns:1.15fr 1fr;
+  }
+  /* La previsualitzacio ha d'omplir sempre tot el contenidor, sigui quina sigui
+     la mida de la targeta. El truc: l'iframe fa el 250% del contenidor i es
+     redueix al 40% (0.4 x 250% = 100%), o sigui que sempre encaixa exacte i
+     alhora la web de dins es renderitza a mida d'escriptori, no de mobil. */
+  .previsual{position:relative; background:#fff; min-height:340px; overflow:hidden}
+  .previsual iframe{
+    position:absolute; top:0; left:0;
+    width:250%; height:250%; border:0; display:block;
+    transform:scale(.40); transform-origin:0 0; pointer-events:none;
+  }
+  .previsual a.cobertura{position:absolute; inset:0; display:block}
+  .proj-txt{padding:34px 34px 34px 30px; display:flex; flex-direction:column; justify-content:center}
+  .sector{
+    font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--acc2); margin-bottom:12px;
+  }
+  .proj h3{font-size:26px; font-weight:800; letter-spacing:-.01em}
+  .proj p{margin-top:12px; color:var(--mut); font-size:16px}
+  .etiquetes{margin-top:20px; display:flex; gap:8px; flex-wrap:wrap}
+  .tag{
+    font-size:12px; font-weight:700; letter-spacing:.04em; color:var(--mut);
+    border:1px solid var(--line); border-radius:999px; padding:6px 13px;
+  }
+  .obre{
+    margin-top:24px; font-size:15px; font-weight:700; color:var(--acc);
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+  }
+  .obre:hover{text-decoration:underline}
+
+  /* ---------- serveis ---------- */
+  .serveis{margin-top:40px; display:grid; grid-template-columns:1fr 1fr; gap:26px}
+  .servei{background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:32px}
+  .servei h3{font-size:22px; font-weight:800; margin-bottom:12px}
+  .servei p{color:var(--mut); font-size:16px}
+  .servei ul{margin-top:16px; list-style:none; color:var(--mut); font-size:15px}
+  .servei li{padding-left:20px; position:relative; margin-bottom:8px}
+  .servei li::before{content:"—"; position:absolute; left:0; color:var(--acc)}
+
+  /* ---------- peu ---------- */
+  footer{padding:64px 0 80px; border-top:1px solid var(--line)}
+  .peu-gran{font-size:clamp(24px,3.4vw,34px); font-weight:800; letter-spacing:-.02em; max-width:22ch}
+  .peu-nota{margin-top:36px; color:#6d7480; font-size:14px}
+
+  @media (max-width:860px){
+    .proj{grid-template-columns:1fr}
+    .previsual{min-height:240px; height:240px}
+    .serveis{grid-template-columns:1fr}
+    header{padding:64px 0 48px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Barcelona · Catalan, Spanish, English</p>
+    <h1>One good page beats a website <em>nobody reads.</em></h1>
+    <p class="lede">
+      I build fast, hand-coded single page websites for small businesses, and I translate
+      them into Catalan and Spanish that actually sound like they were written in Catalan
+      and Spanish.
+    </p>
+    <div class="accions">
+      <a class="btn btn-p" href="https://www.fiverr.com/bielporte" target="_blank" rel="noopener">Work with me</a>
+      <a class="btn btn-s" href="#work">See the work</a>
+    </div>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <p class="titol-sec">Selected work</p>
+    <h2>Three sites, three completely different jobs.</h2>
+    <p class="sec-intro">
+      Self-initiated projects, built from scratch to show what I do. No templates, no page
+      builders, no plugins: every one of them is hand-written HTML and CSS, which is why
+      they load in about a second.
+    </p>
+
+    <div class="projectes">
+
+      <article class="proj">
+        <div class="previsual">
+          <iframe src="https://bielporte10.github.io/tramuntana/" title="Grup Tramuntana" loading="lazy" scrolling="no"></iframe>
+          <a class="cobertura" href="https://bielporte10.github.io/tramuntana/" target="_blank" rel="noopener" aria-label="Open Grup Tramuntana"></a>
+        </div>
+        <div class="proj-txt">
+          <p class="sector">Industrial group</p>
+          <h3>Grup Tramuntana</h3>
+          <p>
+            A corporate site for an industrial group with four divisions. Fully trilingual
+            with a working language switcher, animated hero, live counters and an SVG plant
+            diagram. No images, no external libraries.
+          </p>
+          <div class="etiquetes">
+            <span class="tag">Catalan · Spanish · English</span>
+            <span class="tag">Light &amp; dark</span>
+            <span class="tag">Canvas animation</span>
+          </div>
+          <a class="obre" href="https://bielporte10.github.io/tramuntana/" target="_blank" rel="noopener">Open the site →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="previsual">
+          <iframe src="https://bielporte10.github.io/torrefactora/" title="La Torrefactora" loading="lazy" scrolling="no"></iframe>
+          <a class="cobertura" href="https://bielporte10.github.io/torrefactora/" target="_blank" rel="noopener" aria-label="Open La Torrefactora"></a>
+        </div>
+        <div class="proj-txt">
+          <p class="sector">Coffee roastery</p>
+          <h3>La Torrefactora</h3>
+          <p>
+            The kind of page a café or a small shop actually needs: what you do, the menu,
+            the hours, where you are, and a button that makes people book a table. Warm,
+            calm, and built to convert.
+          </p>
+          <div class="etiquetes">
+            <span class="tag">Hospitality</span>
+            <span class="tag">One page</span>
+            <span class="tag">Conversion focused</span>
+          </div>
+          <a class="obre" href="https://bielporte10.github.io/torrefactora/" target="_blank" rel="noopener">Open the site →</a>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="previsual">
+          <iframe src="https://bielporte10.github.io/barberia-roure/" title="Barberia Roure" loading="lazy" scrolling="no"></iframe>
+          <a class="cobertura" href="https://bielporte10.github.io/barberia-roure/" target="_blank" rel="noopener" aria-label="Open Barberia Roure"></a>
+        </div>
+        <div class="proj-txt">
+          <p class="sector">Barber shop</p>
+          <h3>Barberia Roure</h3>
+          <p>
+            A visual identity of its own, a price list that is easy to scan, and a barber
+            pole animated purely in CSS, without a single image file. Proof that a small
+            local business does not have to look like everyone else.
+          </p>
+          <div class="etiquetes">
+            <span class="tag">Local business</span>
+            <span class="tag">CSS animation</span>
+            <span class="tag">No images</span>
+          </div>
+          <a class="obre" href="https://bielporte10.github.io/barberia-roure/" target="_blank" rel="noopener">Open the site →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="titol-sec">What I do</p>
+    <h2>Two things, both done properly.</h2>
+
+    <div class="serveis">
+      <div class="servei">
+        <h3>One page websites</h3>
+        <p>
+          For shops, bars, barbers, workshops and local services. One fast page that says
+          what you do and makes people contact you.
+        </p>
+        <ul>
+          <li>Hand-coded, no templates or page builders</li>
+          <li>Works properly on phones</li>
+          <li>Your photos and reviews built into the page</li>
+          <li>Click to call and WhatsApp buttons</li>
+          <li>Published live, domain in your name</li>
+        </ul>
+      </div>
+
+      <div class="servei">
+        <h3>Catalan &amp; Spanish translation</h3>
+        <p>
+          Catalan is my first language. Most translations into it are done by machine and
+          read like it. I fix exactly what a machine gets wrong.
+        </p>
+        <ul>
+          <li>Websites, apps, menus, product descriptions</li>
+          <li>Spanish from Spain, not Latin American Spanish</li>
+          <li>Calques, possessives and register handled properly</li>
+          <li>100 words translated free, so you can judge first</li>
+          <li>No sworn or certified translations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="peu-gran">Tell me what your business does and I will tell you honestly if I am the right fit.</p>
+    <div class="accions">
+      <a class="btn btn-p" href="https://www.fiverr.com/bielporte" target="_blank" rel="noopener">Message me on Fiverr</a>
+    </div>
+    <p class="peu-nota">Biel Porté · Barcelona · Catalan, Spanish and English</p>
+  </div>
+</footer>
+
+</body>
+</html>

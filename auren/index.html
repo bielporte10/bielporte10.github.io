@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n-title="meta.home">Auren</title>
+<meta name="description" content="Auren designs and operates solar grids, storage networks and smart distribution for growing cities." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M16 3 L29 27 H21.5 L16 16.5 L10.5 27 H3 Z" fill="currentColor" style="color:var(--accent)"/>
+        <path d="M16 14 L20.5 22 H11.5 Z" fill="var(--bg)"/>
+      </svg>
+      Auren
+    </a>
+    <ul class="nav-links" data-nav-links>
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="company.html" data-i18n="nav.company">Company</a></li>
+      <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      <li><a class="btn btn-primary nav-cta-mobile" href="contact.html" data-i18n="nav.cta">Talk to us</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang-toggle aria-haspopup="true" aria-expanded="false" aria-label="Language">
+          <span data-lang-current>EN</span>
+        </button>
+        <div class="lang-menu" data-lang-menu role="menu">
+          <button role="menuitem" data-lang-option="en">English</button>
+          <button role="menuitem" data-lang-option="es">Español</button>
+          <button role="menuitem" data-lang-option="ca">Català</button>
+          <button role="menuitem" data-lang-option="fr">Français</button>
+        </div>
+      </div>
+      <a class="btn btn-primary nav-cta" href="contact.html" data-i18n="nav.cta">Talk to us</a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-split">
+  <div class="wrap">
+    <div>
+      <h1 data-i18n="home.hero.headline">Power that keeps cities moving forward.</h1>
+      <p class="body-lg" data-i18n="home.hero.subtext">Auren designs and operates the solar grids, storage networks and smart distribution that power growing cities, day and night.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="solutions.html" data-i18n="home.hero.ctaPrimary">See our solutions</a>
+        <a class="btn btn-link" href="contact.html" data-i18n="home.hero.ctaSecondary">Talk to us</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e0ab63"/>
+            <stop offset="100%" stop-color="#c98d3e" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="290" cy="100" r="90" fill="url(#sunGrad)"/>
+        <circle cx="290" cy="100" r="34" fill="var(--accent)"/>
+        <g stroke="var(--border)" stroke-width="1.5">
+          <line x1="290" y1="100" x2="120" y2="220"/>
+          <line x1="290" y1="100" x2="300" y2="300"/>
+          <line x1="290" y1="100" x2="90" y2="120"/>
+          <line x1="120" y1="220" x2="60" y2="320"/>
+          <line x1="120" y1="220" x2="300" y2="300"/>
+          <line x1="90" y1="120" x2="120" y2="220"/>
+        </g>
+        <g fill="var(--text)">
+          <circle cx="120" cy="220" r="7"/>
+          <circle cx="300" cy="300" r="7"/>
+          <circle cx="90" cy="120" r="5"/>
+          <circle cx="60" cy="320" r="5"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap stat-strip">
+    <div class="reveal">
+      <div class="stat-num" data-i18n="home.stats.n1.num">6.4 GW</div>
+      <div class="stat-label" data-i18n="home.stats.n1.label">of clean capacity delivered since 2014</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-i18n="home.stats.n2.num">312</div>
+      <div class="stat-label" data-i18n="home.stats.n2.label">grid projects completed across 19 countries</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num" data-i18n="home.stats.n3.num">41%</div>
+      <div class="stat-label" data-i18n="home.stats.n3.label">average cut in outage time for partner cities</div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="home.build.eyebrow">What we build</p>
+      <h2 data-i18n="home.build.heading">Three systems, engineered together</h2>
+    </div>
+    <div class="bento">
+      <div class="bento-cell primary reveal">
+        <svg class="bento-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        <h3 data-i18n="home.build.solar.title">Solar Grids</h3>
+        <p data-i18n="home.build.solar.body">Utility-scale arrays designed around grid stability, not panel count alone.</p>
+      </div>
+      <div class="bento-cell secondary reveal">
+        <svg class="bento-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2" width="10" height="4" rx="1"/><rect x="4" y="6" width="16" height="16" rx="2"/><path d="M4 12h16M4 17h16"/></svg>
+        <h3 data-i18n="home.build.storage.title">Storage Networks</h3>
+        <p data-i18n="home.build.storage.body">Battery systems that hold power for the hours when the sun and wind cannot.</p>
+      </div>
+      <div class="bento-cell secondary reveal">
+        <svg class="bento-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5" cy="6" r="2.4"/><circle cx="19" cy="6" r="2.4"/><circle cx="12" cy="19" r="2.4"/><path d="M6.9 7.6L11 17.2M17.1 7.6L13 17.2M7.4 6h9.2"/></svg>
+        <h3 data-i18n="home.build.distribution.title">Smart Distribution</h3>
+        <p data-i18n="home.build.distribution.body">Software that routes electricity where cities need it most, in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap editorial">
+    <div class="reveal">
+      <h2 data-i18n="home.editorial.heading">Most grids were built for less power than cities need now.</h2>
+      <p class="body-lg" data-i18n="home.editorial.body">We design solar, storage and distribution as one system from the start, instead of stitching separate contracts together after the fact.</p>
+    </div>
+    <div class="art-slot reveal" aria-hidden="true">
+      <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="var(--border)" stroke-width="1.5">
+          <line x1="20" y1="60" x2="380" y2="60"/>
+          <line x1="20" y1="140" x2="380" y2="140"/>
+          <line x1="20" y1="220" x2="380" y2="220"/>
+          <line x1="80" y1="20" x2="80" y2="240"/>
+          <line x1="200" y1="20" x2="200" y2="240"/>
+          <line x1="320" y1="20" x2="320" y2="240"/>
+        </g>
+        <circle cx="80" cy="60" r="8" fill="var(--accent)"/>
+        <circle cx="200" cy="140" r="8" fill="var(--accent)"/>
+        <circle cx="320" cy="220" r="8" fill="var(--accent)"/>
+        <circle cx="200" cy="60" r="5" fill="var(--text)"/>
+        <circle cx="80" cy="220" r="5" fill="var(--text)"/>
+        <circle cx="320" cy="60" r="5" fill="var(--text)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap testimonial reveal">
+    <blockquote data-i18n="home.testimonial.quote">Auren rebuilt our storage network in eight months without a single day of downtime for residents.</blockquote>
+    <cite>
+      <span class="name" data-i18n="home.testimonial.name">Elena Marsh</span><br/>
+      <span data-i18n="home.testimonial.role">Head of Infrastructure, City of Tarrow</span>
+    </cite>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2 data-i18n="shared.cta.heading">Planning a grid for the next decade.</h2>
+      <a class="btn btn-primary" href="contact.html" data-i18n="shared.cta.button">Talk to us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 3 L29 27 H21.5 L16 16.5 L10.5 27 H3 Z" fill="currentColor" style="color:var(--accent)"/>
+            <path d="M16 14 L20.5 22 H11.5 Z" fill="var(--bg)"/>
+          </svg>
+          Auren
+        </a>
+        <p class="body-lg" style="margin-top:10px;font-size:14.5px" data-i18n="footer.tagline">Clean energy infrastructure for growing cities.</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="company.html" data-i18n="nav.company">Company</a></li>
+        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-meta">
+      <span data-i18n="footer.copyright">© 2026 Auren Energy. All rights reserved.</span>
+      <span data-i18n="contact.info.hqValue">Rotterdam, Netherlands</span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n/en.js"></script>
+<script src="i18n/es.js"></script>
+<script src="i18n/ca.js"></script>
+<script src="i18n/fr.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n-title="meta.contact">Contact | Auren</title>
+<meta name="description" content="Tell us about your city or project. We usually reply within two business days." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M16 3 L29 27 H21.5 L16 16.5 L10.5 27 H3 Z" fill="currentColor" style="color:var(--accent)"/>
+        <path d="M16 14 L20.5 22 H11.5 Z" fill="var(--bg)"/>
+      </svg>
+      Auren
+    </a>
+    <ul class="nav-links" data-nav-links>
+      <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+      <li><a href="company.html" data-i18n="nav.company">Company</a></li>
+      <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      <li><a class="btn btn-primary nav-cta-mobile" href="contact.html" data-i18n="nav.cta">Talk to us</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn" data-lang-toggle aria-haspopup="true" aria-expanded="false" aria-label="Language">
+          <span data-lang-current>EN</span>
+        </button>
+        <div class="lang-menu" data-lang-menu role="menu">
+          <button role="menuitem" data-lang-option="en">English</button>
+          <button role="menuitem" data-lang-option="es">Español</button>
+          <button role="menuitem" data-lang-option="ca">Català</button>
+          <button role="menuitem" data-lang-option="fr">Français</button>
+        </div>
+      </div>
+      <a class="btn btn-primary nav-cta" href="contact.html" data-i18n="nav.cta">Talk to us</a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-statement">
+  <div class="wrap">
+    <h1 data-i18n="contact.hero.headline">Talk to our team</h1>
+    <p class="body-lg" data-i18n="contact.hero.subtext">Tell us about your city or project. We usually reply within two business days.</p>
+  </div>
+</header>
+
+<section class="section-alt">
+  <div class="wrap contact-grid">
+    <div>
+      <form data-contact-form novalidate>
+        <div class="field" data-field>
+          <label for="f-name" data-i18n="contact.form.nameLabel">Name</label>
+          <input id="f-name" name="name" type="text" required
+                 data-i18n-placeholder="contact.form.namePlaceholder" placeholder="Your full name"
+                 data-i18n-error-required="contact.form.errorRequired" data-error-required="This field is required" />
+          <span class="field-error" data-field-error></span>
+        </div>
+        <div class="field" data-field>
+          <label for="f-email" data-i18n="contact.form.emailLabel">Email</label>
+          <input id="f-email" name="email" type="email" required
+                 data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="you@organization.com"
+                 data-i18n-error-required="contact.form.errorRequired" data-error-required="This field is required"
+                 data-i18n-error-email="contact.form.errorEmail" data-error-email="Enter a valid email address" />
+          <span class="field-error" data-field-error></span>
+        </div>
+        <div class="field" data-field>
+          <label for="f-org" data-i18n="contact.form.orgLabel">Organization</label>
+          <input id="f-org" name="organization" type="text"
+                 data-i18n-placeholder="contact.form.orgPlaceholder" placeholder="City, utility or company" />
+          <span class="field-error" data-field-error></span>
+        </div>
+        <div class="field" data-field>
+          <label for="f-message" data-i18n="contact.form.messageLabel">Message</label>
+          <textarea id="f-message" name="message" rows="5" required
+                    data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Tell us about the project"
+                    data-i18n-error-required="contact.form.errorRequired" data-error-required="This field is required"></textarea>
+          <span class="field-error" data-field-error></span>
+        </div>
+        <button class="btn btn-primary" type="submit" data-i18n="contact.form.submitButton">Send message</button>
+      </form>
+      <div class="form-success" data-form-success>
+        <h3 data-i18n="contact.form.successTitle" style="font-size:1.1rem;margin-bottom:8px">Message received</h3>
+        <p data-i18n="contact.form.successBody" style="color:var(--text-dim);font-size:14.5px">This is a front-end demo, so nothing was actually sent, but this is the confirmation state a real form would show.</p>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div>
+        <div class="info-label" data-i18n="contact.info.emailLabel">Email</div>
+        <div class="info-value" data-i18n="contact.info.emailValue">hello@auren-energy.example</div>
+      </div>
+      <div>
+        <div class="info-label" data-i18n="contact.info.phoneLabel">Phone</div>
+        <div class="info-value" data-i18n="contact.info.phoneValue">+31 10 555 0142</div>
+      </div>
+      <div>
+        <div class="info-label" data-i18n="contact.info.hqLabel">Global headquarters</div>
+        <div class="info-value" data-i18n="contact.info.hqValue">Rotterdam, Netherlands</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 3 L29 27 H21.5 L16 16.5 L10.5 27 H3 Z" fill="currentColor" style="color:var(--accent)"/>
+            <path d="M16 14 L20.5 22 H11.5 Z" fill="var(--bg)"/>
+          </svg>
+          Auren
+        </a>
+        <p class="body-lg" style="margin-top:10px;font-size:14.5px" data-i18n="footer.tagline">Clean energy infrastructure for growing cities.</p>
+      </div>
+      <ul class="footer-nav">
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="company.html" data-i18n="nav.company">Company</a></li>
+        <li><a href="solutions.html" data-i18n="nav.solutions">Solutions</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-meta">
+      <span data-i18n="footer.copyright">© 2026 Auren Energy. All rights reserved.</span>
+      <span data-i18n="contact.info.hqValue">Rotterdam, Netherlands</span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n/en.js"></script>
+<script src="i18n/es.js"></script>
+<script src="i18n/ca.js"></script>
+<script src="i18n/fr.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

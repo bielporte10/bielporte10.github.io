@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gmail Agent Vault</title>
+<meta name="description" content="A personal, locally-run assistant that helps Biel Porté read and organise his own Gmail inbox.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1013; --bg2:#14171c; --line:#23272e;
+    --txt:#f2f4f7; --mut:#9aa1ad; --acc:#e8a33d; --max:760px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{
+    background:var(--bg); color:var(--txt);
+    font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.65;
+  }
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px}
+  a{color:var(--acc)}
+  header{padding:88px 0 40px}
+  .eyebrow{
+    font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--acc); margin-bottom:20px;
+  }
+  h1{font-size:clamp(32px,5vw,48px); line-height:1.08; font-weight:900; letter-spacing:-.025em}
+  .lede{margin-top:22px; font-size:18px; color:var(--mut); font-weight:500}
+  main{padding-bottom:88px}
+  section{margin-top:44px}
+  h2{font-size:20px; font-weight:800; letter-spacing:-.01em; margin-bottom:14px}
+  p{color:var(--mut); margin-bottom:14px}
+  ul{color:var(--mut); margin:0 0 14px 20px}
+  li{margin-bottom:8px}
+  .card{
+    background:var(--bg2); border:1px solid var(--line);
+    border-radius:10px; padding:22px 24px;
+  }
+  footer{
+    border-top:1px solid var(--line); padding:28px 0 64px;
+    color:var(--mut); font-size:14px;
+  }
+  footer a{margin-right:18px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Personal project</div>
+  <h1>Gmail Agent Vault</h1>
+  <p class="lede">A personal assistant that helps me read, search and organise my own Gmail inbox from my own computer.</p>
+</header>
+
+<main>
+
+<section>
+  <h2>What it is</h2>
+  <p>Gmail Agent Vault is a small tool I built for myself. It connects an AI coding assistant running on my own machine to my own Gmail account, so I can ask it to summarise my inbox, find a specific message, label things, or draft a reply.</p>
+  <p>It is not a product, it is not for sale, and it has exactly one user: me.</p>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <ul>
+    <li>It runs locally on my personal computer. There is no server and no website that processes mail.</li>
+    <li>It authenticates with Google using OAuth. I grant it access to my own account and nobody else's.</li>
+    <li>It reads messages only when I ask it to, and it never sends an email without me approving it first.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Privacy</h2>
+  <p>Because this application requests access to Gmail data, Google requires a published privacy policy. You can read it here:</p>
+  <p><a href="privacy.html"><strong>Privacy policy →</strong></a></p>
+</section>
+
+</main>
+
+<footer>
+  <a href="privacy.html">Privacy policy</a>
+  <a href="../">Biel Porté</a>
+</footer>
+
+</div>
+
+</body>
+</html>
